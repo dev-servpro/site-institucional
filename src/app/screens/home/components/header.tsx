@@ -12,20 +12,21 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white p-4 shadow-sm">
+    <header className="sticky top-0 z-50 bg-[#F5F5F5] shadow-md">
       <nav className="container mx-auto">
-        <div className="flex items-center justify-between">
-          <Link href="/">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="relative z-10 pl-4">
             <Image 
-              className="w-36 md:w-52.5 h-auto" 
+              className="w-32 md:w-40 h-auto" 
               src={Logo} 
               alt="Logo da ServPro" 
+              priority
             />
           </Link>
 
           {/* Hamburger Menu Button */}
           <button
-            className="lg:hidden p-2 relative w-10 h-10 focus:outline-none flex items-center justify-center"
+            className="lg:hidden p-2 relative w-10 h-10 focus:outline-none flex items-center justify-center text-primary hover:text-primary/80 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -55,32 +56,48 @@ export default function Header() {
           </button>
 
           {/* Desktop Navigation */}
-          <ul className="hidden lg:flex space-x-8">
-            <li>
-              <Link href="/" className="hover:text-blue-600 transition-colors">
-                Sobre Nós
+          <ul className="hidden lg:flex items-center h-full">
+            <li className="group h-full">
+              <Link 
+                href="/" 
+                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+              >
+                <span className="relative z-10">Sobre Nós</span>
+                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
               </Link>
             </li>
 
-            <li className="hidden lg:block">
+            <li className="h-full">
               <ProdutosNav />
             </li>
 
-            <li>
-              <Link href="/" className="hover:text-blue-600 transition-colors">
-                Soluções
+            <li className="group h-full">
+              <Link 
+                href="/" 
+                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+              >
+                <span className="relative z-10">Soluções</span>
+                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
               </Link>
             </li>
 
-            <li>
-              <Link href="/" className="hover:text-blue-600 transition-colors">
-                Onde Encontrar
+            <li className="group h-full">
+              <Link 
+                href="/" 
+                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+              >
+                <span className="relative z-10">Onde Encontrar</span>
+                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
               </Link>
             </li>
 
-            <li>
-              <Link href="/" className="hover:text-blue-600 transition-colors">
-                Contato
+            <li className="group h-full">
+              <Link 
+                href="/" 
+                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+              >
+                <span className="relative z-10">Contato</span>
+                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
               </Link>
             </li>
           </ul>
@@ -107,10 +124,10 @@ export default function Header() {
                   opacity: { duration: 0.2 }
                 }
               }}
-              className="lg:hidden overflow-hidden"
+              className="lg:hidden overflow-hidden bg-[#F5F5F5] absolute top-full left-0 right-0 border-t border-primary/10 shadow-lg"
             >
               <motion.ul 
-                className="space-y-4 pt-4"
+                className="space-y-1"
                 initial="closed"
                 animate="open"
                 exit="closed"
@@ -148,15 +165,16 @@ export default function Header() {
                         }
                       }
                     }}
-                    className="block"
+                    className="group"
                   >
                     {item.component || (
                       <Link
                         href={item.href}
-                        className="block hover:text-blue-600 transition-colors"
+                        className="relative block px-4 py-2 text-[14px] font-medium text-[#333]/90 transition-colors duration-200 group-hover:text-primary"
                         onClick={() => setIsMenuOpen(false)}
                       >
-                        {item.text}
+                        <span className="relative z-10">{item.text}</span>
+                        <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
                       </Link>
                     )}
                   </motion.li>

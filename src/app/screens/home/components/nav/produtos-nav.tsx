@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProdutosNav() {
   const [isMobileExpanded, setIsMobileExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
   const [selectedMobileCategory, setSelectedMobileCategory] = useState<Categories | null>(null);
   const isMobile = useIsMobile();
 
@@ -24,12 +25,13 @@ export default function ProdutosNav() {
             setIsMobileExpanded(!isMobileExpanded);
             setSelectedMobileCategory(null);
           }}
-          className="flex items-center justify-between w-full py-2"
+          className="relative flex items-center justify-between w-full py-2 text-[#333]/90 transition-colors duration-200 group hover:text-primary px-4"
         >
-          <span className="text-gray-700 hover:text-gray-900 transition-colors">Produtos</span>
+          <span className="relative z-10 text-[14px] font-medium">Produtos</span>
           <motion.div
             animate={{ rotate: isMobileExpanded ? 180 : 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="relative z-10"
           >
             <svg
               className="w-4 h-4"
@@ -45,7 +47,9 @@ export default function ProdutosNav() {
               />
             </svg>
           </motion.div>
+          <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
         </button>
+
         <AnimatePresence>
           {isMobileExpanded && (
             <motion.div
@@ -55,21 +59,22 @@ export default function ProdutosNav() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="mt-2 pl-4">
+              <div className="mt-2 pl-8">
                 {Array.from(categoriesLabelMap.entries()).map(([category, { label }]) => (
                   <div key={category} className="mb-2">
                     <button
                       onClick={() => setSelectedMobileCategory(
                         selectedMobileCategory === category ? null : category
                       )}
-                      className="flex items-center justify-between w-full py-2 text-left"
+                      className="relative flex items-center justify-between w-full py-2 text-left text-[#333]/90 transition-colors duration-200 group hover:text-primary"
                     >
-                      <span className="text-gray-700 hover:text-gray-900 transition-colors">
+                      <span className="relative z-10 text-[14px] font-medium">
                         {label}
                       </span>
                       <motion.div
                         animate={{ rotate: selectedMobileCategory === category ? 180 : 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="relative z-10"
                       >
                         <svg
                           className="w-4 h-4"
@@ -85,6 +90,7 @@ export default function ProdutosNav() {
                           />
                         </svg>
                       </motion.div>
+                      <span className="absolute inset-0 w-full h-full bg-white/0 transition-colors duration-200 group-hover:bg-white/10" />
                     </button>
                     <AnimatePresence>
                       {selectedMobileCategory === category && (
@@ -100,12 +106,13 @@ export default function ProdutosNav() {
                             <motion.a
                               key={item}
                               href="#"
-                              className="block py-2 text-sm text-gray-600 hover:text-orange-800 transition-colors"
+                              className="relative block py-2 text-[13px] text-white/80 transition-colors duration-200 group hover:text-white"
                               initial={{ x: -10, opacity: 0 }}
                               animate={{ x: 0, opacity: 1 }}
                               transition={{ delay: item * 0.05 }}
                             >
-                              Subcategoria {item}
+                              <span className="relative z-10">Subcategoria {item}</span>
+                              <span className="absolute inset-0 w-full h-full bg-white/0 transition-colors duration-200 group-hover:bg-white/10" />
                             </motion.a>
                           ))}
                         </motion.div>
@@ -122,18 +129,32 @@ export default function ProdutosNav() {
   }
 
   return (
-    <HoverCard openDelay={100}>
+    <HoverCard open={open} openDelay={200} onOpenChange={setOpen}>
       <HoverCardTrigger asChild>
-        <button className="hover:text-blue-600 transition-colors">
-          Produtos
+        <button className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group hover:text-primary">
+          <span className="relative z-10">Produtos</span>
+          <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
         </button>
       </HoverCardTrigger>
 
       <HoverCardContent 
         className="w-[min(1000px,calc(100vw-2rem))] p-0 shadow-lg"
         sideOffset={8}
+        align="start"
+        forceMount
       >
-        <ProdutosNavContent />
+        <AnimatePresence mode="wait">
+          {open && (
+            <motion.div
+              initial={{ y:10, opacity: 0 }}
+              animate={{ y:0, opacity: 1 }}
+              exit={{ y:10, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <ProdutosNavContent />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </HoverCardContent>
     </HoverCard>
   );
