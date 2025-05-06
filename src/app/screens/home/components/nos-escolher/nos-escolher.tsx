@@ -77,7 +77,7 @@ export default function NosEscolherHome() {
             </div>
 
             <div className="flex-1 flex items-center justify-center mt-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 w-full">
+              <div className="grid grid-cols-2 2xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 w-full">
                 {statistics.map(({ icon: Icon, value, label }) => (
                   <div
                     key={label}
