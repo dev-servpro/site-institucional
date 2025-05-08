@@ -1104,6 +1104,35 @@ export function getProductsMapByPlano(plano: Plano) {
   }
 }
 
+export function getAllProducts() {
+  return [
+    ...autoProducts.ServLOC,
+    ...autoProducts.ServTEM,
+    ...autoProducts.ServPROTEGE,
+    ...cancelaProducts.ServTEM,
+    ...cancelaProducts.ServLOC,
+    ...cancelaProducts.ServPROTEGE,
+    ...sensorProducts.ServTEM,
+    ...sensorProducts.ServLOC,
+    ...sensorProducts.ServPROTEGE,
+    ...enrolarProducts.ServTEM,
+    ...enrolarProducts.ServPROTEGE,
+    ...enrolarProducts.ServLOC,
+    ...cercaProducts.ServTEM,
+    ...cercaProducts.ServLOC,
+    ...cercaProducts.ServPROTEGE,
+    ...cftvProducts.ServTEM,
+    ...cftvProducts.ServLOC,
+    ...cftvProducts.ServPROTEGE,
+    ...controleAcessoProducts.ServTEM,
+    ...controleAcessoProducts.ServLOC,
+    ...controleAcessoProducts.ServPROTEGE,
+    ...protegePortaoProducts.ServLOC,
+    ...protegePortaoProducts.ServTEM,
+    ...protegePortaoProducts.ServPROTEGE,
+  ];
+}
+
 export function getProductByCod(cod: string) {
   return [
     ...autoProducts.ServLOC,

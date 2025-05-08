@@ -60,7 +60,7 @@ export default function Header() {
             <li className="group h-full">
               <Link 
                 href="/" 
-                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Sobre Nós</span>
                 <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
@@ -74,7 +74,7 @@ export default function Header() {
             <li className="group h-full">
               <Link 
                 href="/" 
-                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Soluções</span>
                 <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
@@ -84,7 +84,7 @@ export default function Header() {
             <li className="group h-full">
               <Link 
                 href="/" 
-                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Onde Encontrar</span>
                 <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
@@ -94,7 +94,7 @@ export default function Header() {
             <li className="group h-full">
               <Link 
                 href="/" 
-                className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Contato</span>
                 <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
@@ -170,7 +170,7 @@ export default function Header() {
                     {item.component || (
                       <Link
                         href={item.href}
-                        className="relative block px-4 py-2 text-[14px] font-medium text-[#333]/90 transition-colors duration-200 group-hover:text-primary"
+                        className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <span className="relative z-10">{item.text}</span>

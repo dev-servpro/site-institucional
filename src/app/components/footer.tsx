@@ -85,10 +85,10 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-6 text-white">Contato</h3>
             <div className="space-y-4">
               <Link href="mailto:atendimento@garen.com.br" className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide">
-                emailservpro@.com.br
+                atendimento@garen.com.br
               </Link>
               <Link href="tel:+551434073639" className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide">
-                0800 090 1234
+                (14) 3407-6639
               </Link>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-16 pt-8 border-t border-white/5">
           <p className="text-gray-400 text-[15px] text-center tracking-wide">
-            Copyright © 2025 ServPro | Todos os direitos reservados.
+            Copyright © 2025 Garen | Todos os direitos reservados.
           </p>
         </div>
       </div>

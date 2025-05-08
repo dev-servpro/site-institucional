@@ -25,7 +25,7 @@ export default function ProdutosNav() {
             setIsMobileExpanded(!isMobileExpanded);
             setSelectedMobileCategory(null);
           }}
-          className="relative flex items-center justify-between w-full py-2 text-[#333]/90 transition-colors duration-200 group hover:text-primary px-4"
+          className="relative flex items-center justify-between w-full py-2 text-primary/90 transition-colors duration-200 group hover:text-primary"
         >
           <span className="relative z-10 text-[14px] font-medium">Produtos</span>
           <motion.div
@@ -49,7 +49,6 @@ export default function ProdutosNav() {
           </motion.div>
           <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
         </button>
-
         <AnimatePresence>
           {isMobileExpanded && (
             <motion.div
@@ -59,14 +58,14 @@ export default function ProdutosNav() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="mt-2 pl-8">
+              <div className="mt-2 pl-4">
                 {Array.from(categoriesLabelMap.entries()).map(([category, { label }]) => (
                   <div key={category} className="mb-2">
                     <button
                       onClick={() => setSelectedMobileCategory(
                         selectedMobileCategory === category ? null : category
                       )}
-                      className="relative flex items-center justify-between w-full py-2 text-left text-[#333]/90 transition-colors duration-200 group hover:text-primary"
+                      className="relative flex items-center justify-between w-full py-2 text-left text-white/90 transition-colors duration-200 group hover:text-white"
                     >
                       <span className="relative z-10 text-[14px] font-medium">
                         {label}
@@ -131,7 +130,7 @@ export default function ProdutosNav() {
   return (
     <HoverCard open={open} openDelay={200} onOpenChange={setOpen}>
       <HoverCardTrigger asChild>
-        <button className="relative h-full px-4 flex items-center text-[#333]/90 font-medium text-[14px] transition-colors duration-200 group hover:text-primary">
+        <button className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group hover:text-primary">
           <span className="relative z-10">Produtos</span>
           <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
         </button>

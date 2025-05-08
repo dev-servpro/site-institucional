@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Header from "./screens/home/components/header";
+import Footer from "./components/footer";
 
-const poppins = Poppins({
+const poppins = Montserrat({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -23,11 +25,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `antialiased min-h-screen bg-[#EFEAE3]`,
+          `antialiased min-h-screen bg-[#EFEAE3] flex flex-col`,
           poppins.className
         )}
       >
-        {children}
+        <Header />
+        <main className="grow flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
