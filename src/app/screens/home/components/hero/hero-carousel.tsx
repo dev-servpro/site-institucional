@@ -37,7 +37,7 @@ export default function HeroCarousel() {
 
     const autoplayInterval = setInterval(() => {
       api.scrollNext();
-    }, 8000); // Change slide every 4 seconds
+    }, 16000); // Change slide every 16 seconds
 
     api.on("select", () => {
       setCurrentSlide(api.selectedScrollSnap());

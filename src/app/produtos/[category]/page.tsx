@@ -82,7 +82,7 @@ export default async function CardProduto({
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="py-4">
+      <div className="py-2 2xl:py-4">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -104,14 +104,14 @@ export default async function CardProduto({
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <h1 className="text-2xl font-bold text-center mt-10">
+      <h1 className="text-2xl font-bold text-center mt-4 2xl:mt-10">
         Linhas de {capitalizeText(category.nome, true)}
       </h1>
       <p className="text-center text-gray-600 mt-2">
         Confira nossos produtos e encontre o que você precisa!
       </p>
 
-      <div className={cn(dmSans.className, "flex py-8")}>
+      <div className={cn(dmSans.className, "flex pt-2 pb-8 2xl:py-8")}>
         <FilterArea
           filteredProducts={filteredProducts}
           subcategories={subcategories}

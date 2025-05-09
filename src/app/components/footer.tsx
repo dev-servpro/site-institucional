@@ -114,10 +114,10 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-6 text-white">Contato</h3>
             <div className="space-y-4">
               <Link
-                href="mailto:atendimento@garen.com.br"
+                href="mailto:contato@redeservpro.com.br"
                 className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
               >
-                email@redeservpro.com.br
+                contato@redeservpro.com.br
               </Link>
               <Link
                 href="https://api.whatsapp.com/send/?phone=558000901234&text=Ol%C3%A1%2C+gostaria+de+saber+mais+detalhes.&type=phone_number&app_absent=0"

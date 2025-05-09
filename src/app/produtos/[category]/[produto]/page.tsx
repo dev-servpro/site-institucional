@@ -137,7 +137,7 @@ export default async function ProductPage({
       </div>
 
       {/* Main Content */}
-      <main className="container max-w-7xl mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <main className="container max-w-7xl mx-auto py-10 pt-2 px-4 grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Product Image */}
         <motion.div
           className="flex items-center justify-center bg-white rounded-xl shadow-lg p-8"

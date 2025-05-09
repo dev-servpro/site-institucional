@@ -20,7 +20,7 @@ export default function Filter({ value, onChange, options }: FilterProps) {
     <RadioGroup
       value={value}
       onValueChange={onChange}
-      className="flex mx-auto gap-3"
+      className="flex flex-wrap mx-auto gap-3"
       aria-label="Filter"
     >
       {options.map((option) => (
