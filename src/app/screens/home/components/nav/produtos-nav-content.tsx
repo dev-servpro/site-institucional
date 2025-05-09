@@ -27,7 +27,7 @@ export default function ProdutosNavContent() {
           border-r border-slate-200/50
         `}
       >
-        <h3 className="text-lg lg:text-xl text-amber-700 font-semibold px-6 mb-6 flex items-center gap-2">
+        <h3 className="text-sm lg:text-xl text-amber-700 font-semibold px-6 mb-6 flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
           Categorias
         </h3>

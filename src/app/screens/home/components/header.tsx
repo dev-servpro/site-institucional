@@ -16,10 +16,10 @@ export default function Header() {
       <nav className="container mx-auto">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="relative z-10 pl-4">
-            <Image 
-              className="w-32 md:w-40 h-auto" 
-              src={Logo} 
-              alt="Logo da ServPro" 
+            <Image
+              className="w-32 md:w-40 h-auto"
+              src={Logo}
+              alt="Logo da ServPro"
               priority
             />
           </Link>
@@ -58,8 +58,8 @@ export default function Header() {
           {/* Desktop Navigation */}
           <ul className="hidden lg:flex items-center h-full">
             <li className="group h-full">
-              <Link 
-                href="/" 
+              <Link
+                href="/#sobre-nos"
                 className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Sobre Nós</span>
@@ -68,12 +68,14 @@ export default function Header() {
             </li>
 
             <li className="h-full">
-              <ProdutosNav />
+              <Link href="/produtos">
+                <ProdutosNav />
+              </Link>
             </li>
 
             <li className="group h-full">
-              <Link 
-                href="/" 
+              <Link
+                href="/"
                 className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Soluções</span>
@@ -82,18 +84,9 @@ export default function Header() {
             </li>
 
             <li className="group h-full">
-              <Link 
-                href="/" 
-                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
-              >
-                <span className="relative z-10">Onde Encontrar</span>
-                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
-              </Link>
-            </li>
-
-            <li className="group h-full">
-              <Link 
-                href="/" 
+              <Link
+                href="https://api.whatsapp.com/send/?phone=558000901234&text=Ol%C3%A1%2C+gostaria+de+saber+mais+detalhes.&type=phone_number&app_absent=0"
+                target="_blank"
                 className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Contato</span>
@@ -108,36 +101,36 @@ export default function Header() {
           {isMenuOpen && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
-              animate={{ 
-                height: "auto", 
+              animate={{
+                height: "auto",
                 opacity: 1,
                 transition: {
                   height: { duration: 0.4 },
-                  opacity: { duration: 0.3, delay: 0.1 }
-                }
+                  opacity: { duration: 0.3, delay: 0.1 },
+                },
               }}
-              exit={{ 
-                height: 0, 
+              exit={{
+                height: 0,
                 opacity: 0,
                 transition: {
                   height: { duration: 0.4 },
-                  opacity: { duration: 0.2 }
-                }
+                  opacity: { duration: 0.2 },
+                },
               }}
               className="lg:hidden overflow-hidden bg-[#F5F5F5] absolute top-full left-0 right-0 border-t border-primary/10 shadow-lg"
             >
-              <motion.ul 
+              <motion.ul
                 className="space-y-1"
                 initial="closed"
                 animate="open"
                 exit="closed"
                 variants={{
                   open: {
-                    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+                    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
                   },
                   closed: {
-                    transition: { staggerChildren: 0.05, staggerDirection: -1 }
-                  }
+                    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+                  },
                 }}
               >
                 {[
@@ -145,7 +138,7 @@ export default function Header() {
                   { component: <ProdutosNav key="produtos" /> },
                   { href: "/", text: "Soluções" },
                   { href: "/", text: "Onde Encontrar" },
-                  { href: "/", text: "Contato" }
+                  { href: "/", text: "Contato" },
                 ].map((item, index) => (
                   <motion.li
                     key={item.text || index}
@@ -154,16 +147,16 @@ export default function Header() {
                         y: 0,
                         opacity: 1,
                         transition: {
-                          y: { stiffness: 1000, velocity: -100 }
-                        }
+                          y: { stiffness: 1000, velocity: -100 },
+                        },
                       },
                       closed: {
                         y: 50,
                         opacity: 0,
                         transition: {
-                          y: { stiffness: 1000 }
-                        }
-                      }
+                          y: { stiffness: 1000 },
+                        },
+                      },
                     }}
                     className="group"
                   >

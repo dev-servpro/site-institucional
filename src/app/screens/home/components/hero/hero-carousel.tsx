@@ -3,7 +3,12 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Categories, categoriesLabelMap } from "@/data/produtos";
@@ -11,13 +16,14 @@ import Banner1 from "../../../../../../public/images/PPA_banner-lancamento_radar
 import Banner2 from "../../../../../../public/images/PPA_banner-lancamento_cameras-ip_1736858547247.webp";
 import Banner3 from "../../../../../../public/images/PPA_banner-lancamento_mola-aerea_1738176783484.webp";
 import Banner4 from "../../../../../../public/images/PPA_banner-lancamento_dz-stark-home_1732112536169.webp";
+import Link from "next/link";
 
 // Select main categories to feature with their background images
 const featuredCategories = [
   { category: Categories.auto, bgImage: Banner4 },
   { category: Categories.cftv, bgImage: Banner2 },
   { category: Categories.porta_sensor, bgImage: Banner3 },
-  { category: Categories.controle_acesso, bgImage: Banner1 }
+  { category: Categories.controle_acesso, bgImage: Banner1 },
 ];
 
 export default function HeroCarousel() {
@@ -29,9 +35,15 @@ export default function HeroCarousel() {
       return;
     }
 
+    const autoplayInterval = setInterval(() => {
+      api.scrollNext();
+    }, 8000); // Change slide every 4 seconds
+
     api.on("select", () => {
       setCurrentSlide(api.selectedScrollSnap());
     });
+
+    return () => clearInterval(autoplayInterval);
   }, [api]);
 
   return (
@@ -70,7 +82,10 @@ export default function HeroCarousel() {
             if (!categoryData) return null;
 
             return (
-              <CarouselItem key={category} className="basis-full relative h-[min(600px,calc(100vh-6rem))]">
+              <CarouselItem
+                key={category}
+                className="basis-full relative h-[min(600px,calc(100vh-6rem))]"
+              >
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
                   <Image
@@ -106,7 +121,8 @@ export default function HeroCarousel() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="mt-4 text-white text-lg md:text-xl max-w-xl mx-auto md:mx-0"
                       >
-                        Descubra nossa linha completa de soluções em {categoryData.label.toLowerCase()}
+                        Descubra nossa linha completa de soluções em{" "}
+                        {categoryData.label.toLowerCase()}
                       </motion.p>
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -117,9 +133,12 @@ export default function HeroCarousel() {
                       >
                         <Button
                           size="lg"
-                          className="uppercase mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] rounded-[10px] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                          className="uppercase rounded-sm !h-16 mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                          asChild
                         >
-                          Ver produtos
+                          <Link href={`/produtos/${category}`}>
+                            Ver produtos
+                          </Link>
                         </Button>
                       </motion.div>
                     </div>

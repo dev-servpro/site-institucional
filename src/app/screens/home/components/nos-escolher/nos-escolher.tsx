@@ -68,7 +68,7 @@ const statistics = [
 
 export default function NosEscolherHome() {
   return (
-    <section className="py-12 md:py-16 lg:py-20">
+    <section id="sobre-nos" className="py-12 md:py-16 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12">
           <div className="order-2 lg:order-1 flex flex-col">

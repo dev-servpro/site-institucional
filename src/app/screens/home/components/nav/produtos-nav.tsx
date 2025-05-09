@@ -130,16 +130,16 @@ export default function ProdutosNav() {
   return (
     <HoverCard open={open} openDelay={200} onOpenChange={setOpen}>
       <HoverCardTrigger asChild>
-        <button className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group hover:text-primary">
+        <button className="relative h-full px-4 flex items-center cursor-pointer text-primary/90 font-medium text-[14px] transition-colors duration-200 group hover:text-primary">
           <span className="relative z-10">Produtos</span>
           <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
         </button>
       </HoverCardTrigger>
 
       <HoverCardContent 
-        className="w-[min(1000px,calc(100vw-2rem))] p-0 shadow-lg"
-        sideOffset={8}
-        align="start"
+        className="w-[min(950px,calc(100vw-10rem))] p-0 shadow-lg mr-40"
+        sideOffset={4}
+        align="center"
         forceMount
       >
         <AnimatePresence mode="wait">
