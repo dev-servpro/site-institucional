@@ -72,7 +72,7 @@ export default function HomeProdutosIndex() {
                 >
                   <Link href={`/produtos/${category}`}>
                     <motion.div
-                      className="flex flex-col items-center bg-slate-100 rounded-lg justify-center select-none p-6 shadow-md hover:bg-[#FFA74A] hover:shadow-lg transition-colors duration-300 group h-full"
+                      className="flex flex-col items-center bg-slate-100 rounded-lg justify-center select-none p-6 shadow-md hover:bg-primary hover:shadow-lg transition-colors duration-300 group h-full"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.5 }}
@@ -108,7 +108,7 @@ export default function HomeProdutosIndex() {
               onClick={() => api?.scrollTo(index)}
               className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
                 current === index
-                  ? "bg-[#FFA74A]"
+                  ? "bg-primary"
                   : "bg-slate-300 hover:bg-slate-400"
               }`}
               aria-label={`Go to slide ${index + 1}`}

@@ -11,8 +11,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
-import CardProduct from "@/app/screens/produtos/components/card-product";
-import Filter from "@/app/screens/produtos/components/filter";
 import FilterArea from "@/app/screens/produtos/components/filter-area";
 
 export async function generateStaticParams() {
@@ -84,33 +82,40 @@ export default async function CardProduto({
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/">Home</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
+      <div className="py-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
 
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/produtos">Categorias</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>
+                {capitalizeText(category.nome, true)}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <h1 className="text-2xl font-bold text-center mt-10">
-        Linhas de {capitalizeText(category.nome,true)}
+        Linhas de {capitalizeText(category.nome, true)}
       </h1>
       <p className="text-center text-gray-600 mt-2">
         Confira nossos produtos e encontre o que você precisa!
       </p>
 
       <div className={cn(dmSans.className, "flex py-8")}>
-        <FilterArea filteredProducts={filteredProducts} subcategories={subcategories} />        
+        <FilterArea
+          filteredProducts={filteredProducts}
+          subcategories={subcategories}
+        />
       </div>
       {/* Adicione o conteúdo dos produtos aqui */}
     </div>

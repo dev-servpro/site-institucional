@@ -95,7 +95,7 @@ export default function HeroCarousel() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="text-[#FFA74A] text-4xl md:text-5xl font-bold"
+                        className="text-primary text-4xl md:text-5xl font-bold"
                       >
                         {categoryData.label}
                       </motion.h1>
@@ -117,7 +117,7 @@ export default function HeroCarousel() {
                       >
                         <Button
                           size="lg"
-                          className="uppercase mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-[#FFA74A] font-bold hover:bg-[#ff9831] rounded-[10px] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                          className="uppercase mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] rounded-[10px] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                         >
                           Ver produtos
                         </Button>
