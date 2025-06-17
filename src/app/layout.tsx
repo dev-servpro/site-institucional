@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "./screens/home/components/header";
 import Footer from "./components/footer";
+import HeaderWrapper from "./screens/home/components/header-wrapper";
 
 const poppins = Montserrat({
   variable: "--font-poppins",
@@ -29,7 +30,7 @@ export default function RootLayout({
           poppins.className
         )}
       >
-        <Header />
+        <HeaderWrapper />
         <main className="grow flex-1">{children}</main>
         <Footer />
       </body>

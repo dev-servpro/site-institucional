@@ -187,7 +187,11 @@ export default async function ProductPage({
               {bullets.map((item, idx) => (
                 <li key={idx} className="flex items-center text-gray-700">
                   <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                  {item}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: capitalizeText(item, true),
+                    }}
+                  ></span>
                 </li>
               ))}
             </ul>

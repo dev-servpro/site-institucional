@@ -58,9 +58,12 @@ export default async function CardProduto({
 }) {
   const { category: categoryParam } = await params;
   const { data: categories } = await api.get<Category[]>("/categories");
-  const category = categories.find(
-    (category: Category) => category.slug === gerarUrlAmigavel(categoryParam)
-  );
+  const category = categories.find((category: Category) => {
+    console.log(
+      `Comparando ${gerarUrlAmigavel(category.slug)} com ${gerarUrlAmigavel(categoryParam)}`
+    );
+    return gerarUrlAmigavel(category.slug) === gerarUrlAmigavel(categoryParam);
+  });
 
   if (!category) {
     return <div>Houve um erro</div>;

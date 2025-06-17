@@ -57,7 +57,7 @@ export default async function Produtos() {
 
       <div className={cn(dmSans.className, "flex py-8")}>
         <div className="flex-1 grow ml-4">
-          <ul className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 sm:gap-6 max-w-300 mx-auto">
+          <ul className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 sm:gap-6 max-w-300 mx-auto">
             {categories
               .filter((category) => {
                 if (
@@ -65,7 +65,11 @@ export default async function Produtos() {
                   category.id === 5 ||
                   category.id === 7 ||
                   category.id === 10 ||
-                  category.id === 9
+                  category.id === 9 ||
+                  category.id === 11 ||
+                  category.id === 13 ||
+                  category.id === 18 ||
+                  category.id === 19
                 ) {
                   return false;
                 }

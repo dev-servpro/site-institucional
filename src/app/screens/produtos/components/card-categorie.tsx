@@ -9,7 +9,7 @@ import {
 } from "@/lib/utils";
 
 export default function CardCategorie({
-  categorie: { imagem, nome, slug, id },
+  categorie: { imagem, nome, slug },
 }: {
   categorie: Category;
 }) {
@@ -31,8 +31,7 @@ export default function CardCategorie({
               height={300}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className={cn(
-                "w-auto h-auto max-w-full max-h-full aspect-square object-contain mx-auto",
-                (id === 3 || id === 8 || id === 1) && "brightness-0"
+                "w-auto h-auto max-w-full max-h-full aspect-square object-contain mx-auto"
               )}
               priority={false}
             />

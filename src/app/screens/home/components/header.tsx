@@ -7,8 +7,19 @@ import ProdutosNav from "./nav/produtos-nav";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Category } from "@/app/produtos/page";
+import { Subcategory } from "@/app/produtos/[category]/page";
+import { Product } from "@/app/produtos/[category]/[produto]/page";
 
-export default function Header() {
+export default function Header({
+  categories,
+  subcategories,
+  products,
+}: {
+  categories: Category[];
+  subcategories: Subcategory[];
+  products: Product[]
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -69,7 +80,7 @@ export default function Header() {
 
             <li className="h-full">
               <Link href="/produtos">
-                <ProdutosNav />
+                <ProdutosNav products={products} categories={categories} subcategories={subcategories} />
               </Link>
             </li>
 

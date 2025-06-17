@@ -25,7 +25,7 @@ interface Product {
 }
 
 export default function CardProduct({
-  product: { imagem, nome, slug, id },
+  product: { imagem, nome, slug },
 }: {
   product: Product;
 }) {
@@ -48,7 +48,6 @@ export default function CardProduct({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className={cn(
                 "w-auto h-auto max-w-full max-h-full aspect-square object-contain mx-auto",
-                (id === 3 || id === 8 || id === 1) && "brightness-0"
               )}
               priority={false}
             />

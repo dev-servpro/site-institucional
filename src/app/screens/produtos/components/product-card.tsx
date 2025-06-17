@@ -19,7 +19,6 @@ export default function ProductCard({
   id: number | string;
   params: { category: string };
 }) {
-  console.log(params);
   return (
     <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden">
       {/* Product Image */}
@@ -51,7 +50,11 @@ export default function ProductCard({
           {bulletPoints?.map((point) => (
             <li key={title + point} className="flex items-center">
               <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-              {capitalizeText(point, true)}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: capitalizeText(point, true),
+                }}
+              ></span>
             </li>
           ))}
         </ul>
