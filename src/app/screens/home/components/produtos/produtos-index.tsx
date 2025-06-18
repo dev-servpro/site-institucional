@@ -7,7 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { categoriesLabelMap } from "@/data/produtos";
 import Image from "next/image";
 import Link from "next/link";
 import * as motion from "motion/react-client";

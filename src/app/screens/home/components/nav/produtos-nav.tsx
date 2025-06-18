@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Subcategory } from "@/app/produtos/[category]/page";
 import { Category } from "@/app/produtos/page";
 import { Product } from "@/app/produtos/[category]/[produto]/page";
+import Link from "next/link";
 
 export default function ProdutosNav({
   categories,
@@ -39,13 +40,13 @@ export default function ProdutosNav({
           }}
           className="relative flex items-center justify-between w-full py-2 text-primary/90 transition-colors duration-200 group hover:text-primary"
         >
-          <span className="relative z-10 text-[14px] font-medium">
+          <span className="relative z-10 text-[14px] font-medium ml-4">
             Produtos
           </span>
           <motion.div
             animate={{ rotate: isMobileExpanded ? 180 : 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="relative z-10"
+            className="relative z-10 mr-4"
           >
             <svg
               className="w-4 h-4"
@@ -84,63 +85,14 @@ export default function ProdutosNav({
                               : category
                           )
                         }
-                        className="relative flex items-center justify-between w-full py-2 text-left text-white/90 transition-colors duration-200 group hover:text-white"
+                        className="relativen ml-6 flex items-center justify-between w-full py-2 text-left transition-colors duration-200 group text-primary hover:text-primary/90 "
                       >
-                        <span className="relative z-10 text-[14px] font-medium">
+                        <Link href="#" className="relative z-10 text-[14px] font-medium w-full">
                           {label}
-                        </span>
-                        <motion.div
-                          animate={{
-                            rotate:
-                              selectedMobileCategory === category ? 180 : 0,
-                          }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="relative z-10"
-                        >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </svg>
-                        </motion.div>
+                        </Link>
+
                         <span className="absolute inset-0 w-full h-full bg-white/0 transition-colors duration-200 group-hover:bg-white/10" />
                       </button>
-                      <AnimatePresence>
-                        {selectedMobileCategory === category && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2, ease: "easeInOut" }}
-                            className="overflow-hidden pl-4"
-                          >
-                            {/* Replace with actual subcategories */}
-                            {[1, 2, 3].map((item) => (
-                              <motion.a
-                                key={item}
-                                href="#"
-                                className="relative block py-2 text-[13px] text-white/80 transition-colors duration-200 group hover:text-white"
-                                initial={{ x: -10, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: item * 0.05 }}
-                              >
-                                <span className="relative z-10">
-                                  Subcategoria {item}
-                                </span>
-                                <span className="absolute inset-0 w-full h-full bg-white/0 transition-colors duration-200 group-hover:bg-white/10" />
-                              </motion.a>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
                     </div>
                   )
                 )}

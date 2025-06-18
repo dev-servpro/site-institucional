@@ -133,10 +133,10 @@ export default function HeroCarousel() {
                       >
                         <Button
                           size="lg"
-                          className="uppercase rounded-sm !h-16 mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                          className="uppercase rounded-sm !h-12 mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                           asChild
                         >
-                          <Link href={`/produtos/${category}`}>
+                          <Link href={categoryData.href}>
                             Ver produtos
                           </Link>
                         </Button>

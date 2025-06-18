@@ -10,6 +10,12 @@ import { Menu, X } from "lucide-react";
 import { Category } from "@/app/produtos/page";
 import { Subcategory } from "@/app/produtos/[category]/page";
 import { Product } from "@/app/produtos/[category]/[produto]/page";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header({
   categories,
@@ -18,7 +24,7 @@ export default function Header({
 }: {
   categories: Category[];
   subcategories: Subcategory[];
-  products: Product[]
+  products: Product[];
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -70,7 +76,7 @@ export default function Header({
           <ul className="hidden lg:flex items-center h-full">
             <li className="group h-full">
               <Link
-                href="/#sobre-nos"
+                href="/sobre-nos"
                 className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
                 <span className="relative z-10">Sobre Nós</span>
@@ -80,18 +86,62 @@ export default function Header({
 
             <li className="h-full">
               <Link href="/produtos">
-                <ProdutosNav products={products} categories={categories} subcategories={subcategories} />
+                <ProdutosNav
+                  products={products}
+                  categories={categories}
+                  subcategories={subcategories}
+                />
               </Link>
             </li>
 
             <li className="group h-full">
-              <Link
-                href="/"
-                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
-              >
-                <span className="relative z-10">Soluções</span>
-                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <span className="relative cursor-pointer h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary">
+                    <span className="relative z-10">Soluções</span>
+                    <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
+                  </span>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      target="_blank"
+                      href="https://planos.redeservpro.com.br/"
+                      className="text-primary focus:text-primary font-medium"
+                    >
+                      Planos
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      target="_blank"
+                      href="https://lp.redeservpro.com.br/"
+                      className="text-primary focus:text-primary font-medium"
+                    >
+                      Esquadrias
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      target="_blank"
+                      href="https://intermaxx.com.br/"
+                      className="text-primary focus:text-primary font-medium"
+                    >
+                      Interfone Interativo
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      target="_blank"
+                      href="https://fonemaxx.com.br/"
+                      className="text-primary focus:text-primary font-medium"
+                    >
+                      Telefonia em Nuvem
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </li>
 
             <li className="group h-full">
@@ -145,11 +195,12 @@ export default function Header({
                 }}
               >
                 {[
-                  { href: "/", text: "Sobre Nós" },
-                  { component: <ProdutosNav key="produtos" /> },
-                  { href: "/", text: "Soluções" },
-                  { href: "/", text: "Onde Encontrar" },
-                  { href: "/", text: "Contato" },
+                  { href: "/sobre-nos", text: "Sobre Nós" },
+                  { href: "/produtos", text: "Produtos" },
+                  {
+                    href: "https://api.whatsapp.com/send/?phone=558000901234&text=Ol%C3%A1%2C+gostaria+de+saber+mais+detalhes.&type=phone_number&app_absent=0",
+                    text: "Contato",
+                  },
                 ].map((item, index) => (
                   <motion.li
                     key={item.text || index}
@@ -171,7 +222,7 @@ export default function Header({
                     }}
                     className="group"
                   >
-                    {item.component || (
+                    {/* {item.component || (
                       <Link
                         href={item.href}
                         className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
@@ -180,7 +231,7 @@ export default function Header({
                         <span className="relative z-10">{item.text}</span>
                         <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
                       </Link>
-                    )}
+                    )} */}
                   </motion.li>
                 ))}
               </motion.ul>

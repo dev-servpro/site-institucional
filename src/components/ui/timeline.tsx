@@ -28,7 +28,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <section id="nossa-historia" className="bg-[#1a1a1a2f] px-4" ref={containerRef}>
+    <section id="nossa-historia" className=" px-4" ref={containerRef}>
       <div className="container mx-auto py-12 md:py-16 lg:py-20">
         <motion.div
           className="text-center max-w-2xl mx-auto mb-10 md:mb-12"

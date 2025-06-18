@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: "www.ppa.com.br",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "assets.aceternity.com",
+        pathname: "**",
+      }
     ],
   },
 };

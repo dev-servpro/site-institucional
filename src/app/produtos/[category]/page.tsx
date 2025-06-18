@@ -12,6 +12,7 @@ import {
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import FilterArea from "@/app/screens/produtos/components/filter-area";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const { data: categories } = await api.get<Category[]>("/categories");
@@ -60,7 +61,9 @@ export default async function CardProduto({
   const { data: categories } = await api.get<Category[]>("/categories");
   const category = categories.find((category: Category) => {
     console.log(
-      `Comparando ${gerarUrlAmigavel(category.slug)} com ${gerarUrlAmigavel(categoryParam)}`
+      `Comparando ${gerarUrlAmigavel(category.slug)} com ${gerarUrlAmigavel(
+        categoryParam
+      )}`
     );
     return gerarUrlAmigavel(category.slug) === gerarUrlAmigavel(categoryParam);
   });
@@ -115,10 +118,12 @@ export default async function CardProduto({
       </p>
 
       <div className={cn(dmSans.className, "flex pt-2 pb-8 2xl:py-8")}>
-        <FilterArea
-          filteredProducts={filteredProducts}
-          subcategories={subcategories}
-        />
+        <Suspense fallback={<div>Carregando filtros...</div>}>
+          <FilterArea
+            filteredProducts={filteredProducts}
+            subcategories={subcategories}
+          />
+        </Suspense>
       </div>
       {/* Adicione o conteúdo dos produtos aqui */}
     </div>

@@ -61,37 +61,75 @@ export enum Categories {
 
 export const categoriesLabelMap: Map<
   Categories,
-  { label: string; image: StaticImageData }
+  { label: string; image: StaticImageData; href: string }
 > = new Map([
-  [Categories.auto, { label: "Motor de portão", image: MotorDePortao }],
+  [
+    Categories.auto,
+    {
+      label: "Motor de portão",
+      image: MotorDePortao,
+      href: "produtos/seguranca-de-acesso?subcategory=automaticos-deslizantes",
+    },
+  ],
   [
     Categories.cancela,
-    { label: "Cancela automática", image: CancelAutomatica },
+    {
+      label: "Cancela automática",
+      image: CancelAutomatica,
+      href: "produtos/seguranca-de-acesso?subcategory=cancelas",
+    },
   ],
   [
     Categories.porta_sensor,
-    { label: "Porta com sensor automática", image: PortaSensor },
+    {
+      label: "Porta com sensor automática",
+      image: PortaSensor,
+      href: "produtos/seguranca-de-acesso?subcategory=porta-social-automatica",
+    },
   ],
   [
     Categories.porta_enrolar,
-    { label: "Porta de enrolar automática", image: PortaEnrolar },
+    {
+      label: "Porta de enrolar automática",
+      image: PortaEnrolar,
+      href: "produtos/seguranca-de-acesso?subcategory=portas-de-enrolar",
+    },
   ],
   [
     Categories.cerca_eletrica,
-    { label: "Cerca elétrica", image: CercaEletrica },
+    {
+      label: "Cerca elétrica",
+      image: CercaEletrica,
+      href: "produtos/seguranca-de-acesso?subcategory=eletrificadores",
+    },
   ],
   [
     Categories.controle_acesso,
-    { label: "Controle de acesso", image: ControleAcesso },
+    {
+      label: "Controle de acesso",
+      image: ControleAcesso,
+      href: "produtos/seguranca-de-acesso?subcategory=controle-de-acesso",
+    },
   ],
-  [Categories.cftv, { label: "Sistema de CFTV", image: CFTV }],
+  [
+    Categories.cftv,
+    { label: "Sistema de CFTV", image: CFTV, href: "produtos/seguranca-de-acesso?subcategory=controle-de-acesso" },
+  ],
   [
     Categories.interfone_cond,
-    { label: "Interfone condominial", image: InterfoneCond },
+    {
+      label: "Interfone condominial",
+      image: InterfoneCond,
+      href: "produtos/seguranca-de-acesso?subcategory=interfones-condominiais",
+    },
   ],
   [
     Categories.antena_coletiva,
-    { label: "Antena coletiva", image: AntenaColetiva },
+    {
+      label: "Antena coletiva",
+      image: AntenaColetiva,
+      href: "produtos/antena-coletiva",
+    },
   ],
 ]);
 

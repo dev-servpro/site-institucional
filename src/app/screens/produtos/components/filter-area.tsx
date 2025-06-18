@@ -6,10 +6,11 @@ import { useState } from "react";
 import {
   capitalizeText,
   extractBulletPoints,
+  gerarUrlAmigavel,
   pegarImagemDosProdutosDoSistemaDeVendas,
 } from "@/lib/utils";
 import ProductCard from "./product-card";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 export default function FilterArea({
   subcategories,
@@ -18,7 +19,15 @@ export default function FilterArea({
   subcategories: Subcategory[];
   filteredProducts: Product[];
 }) {
-  const [value, setValue] = useState<string>(subcategories[0].id.toString());
+  const subcategory = useSearchParams().get("subcategory");
+
+  const [value, setValue] = useState<string>(() => {
+    return (
+      subcategories
+        .find((sub) => gerarUrlAmigavel(sub.slug) === subcategory)
+        ?.id.toString() || String(subcategories?.[0]?.id)
+    );
+  });
   const params = useParams();
 
   return (

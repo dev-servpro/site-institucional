@@ -4,25 +4,16 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ChevronRight,
-  Package,
-  ShoppingBag,
-  Wrench,
-  Settings,
-  Box,
-  Boxes,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Category } from "@/app/produtos/page";
 import {
   capitalizeText,
+  gerarUrlAmigavel,
   pegarImagemDasCategoriasDoSistemaDeVendas,
   pegarImagemDosProdutosDoSistemaDeVendas,
 } from "@/lib/utils";
 import { Subcategory } from "@/app/produtos/[category]/page";
 import { Product } from "@/app/produtos/[category]/[produto]/page";
-
-const subcategoryIcons = [Package, ShoppingBag, Wrench, Settings, Box, Boxes];
 
 export default function ProdutosNavContent({
   categories,
@@ -158,13 +149,16 @@ export default function ProdutosNavContent({
               {/* Replace with actual subcategories */}
               {subcategories
                 .filter((sub) => sub.produto_categoria_id === selectedCategory)
-                .map(({ id, nome, slug }, index) => {
+                .map(({ id, nome }) => {
                   const exampleProduct = products.find(
                     (prod) => prod.produto_subcategoria_id === id
                   );
                   return (
                     <Link
-                      href="#"
+                      href={`/produtos/${gerarUrlAmigavel(
+                        categories.find((cat) => cat.id === selectedCategory)
+                          ?.slug ?? ""
+                      )}?subcategory=${gerarUrlAmigavel(nome)}`}
                       key={id}
                       className="group flex flex-col items-center text-center"
                     >
