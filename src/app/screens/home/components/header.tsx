@@ -15,7 +15,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/app/components/ui/dropdown-menu";
 
 export default function Header({
   categories,
@@ -91,6 +91,16 @@ export default function Header({
                   categories={categories}
                   subcategories={subcategories}
                 />
+              </Link>
+            </li>
+
+            <li className="group h-full">
+              <Link
+                href="/novidades"
+                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+              >
+                <span className="relative z-10">Novidades</span>
+                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
               </Link>
             </li>
 
@@ -197,6 +207,7 @@ export default function Header({
                 {[
                   { href: "/sobre-nos", text: "Sobre Nós" },
                   { href: "/produtos", text: "Produtos" },
+                  { href: "/novidades", text: "Novidades" },
                   {
                     href: "https://api.whatsapp.com/send/?phone=558000901234&text=Ol%C3%A1%2C+gostaria+de+saber+mais+detalhes.&type=phone_number&app_absent=0",
                     text: "Contato",

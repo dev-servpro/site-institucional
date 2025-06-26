@@ -6,12 +6,12 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "@/app/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
 import * as motion from "motion/react-client";
 import { useState, useEffect } from "react";
-import { type CarouselApi } from "@/components/ui/carousel";
+import { type CarouselApi } from "@/app/components/ui/carousel";
 import { Category } from "@/app/produtos/page";
 import {
   capitalizeText,

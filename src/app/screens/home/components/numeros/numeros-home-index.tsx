@@ -1,4 +1,4 @@
-import { NumberTicker } from "@/components/magicui/number-ticker";
+import { NumberTicker } from "@/app/components/magicui/number-ticker";
 
 const bulletPoints = [
   { label: "Atendimentos por dia", number: 150 },

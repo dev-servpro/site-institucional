@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/app/components/ui/breadcrumb";
 import Link from "next/link";
 import { DM_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";

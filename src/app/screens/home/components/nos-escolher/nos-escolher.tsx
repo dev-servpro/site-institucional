@@ -11,8 +11,8 @@ import Slide1 from "../../../../../../public/images/0DB21C38-8B4C-412B-9898-83AD
 import Slide2 from "../../../../../../public/images/7E0D4C5A-8A9E-4F37-9CA5-C4AC13E58480.webp";
 import Slide3 from "../../../../../../public/images/SERVPRO-FILIAL-TERESINA-2.webp";
 import Slide4 from "../../../../../../public/images/Catalogo-SERVPRO-2023-01-1024x1024.webp";
-import { Separator } from "@/components/ui/separator";
 import { AutoplayCarousel } from "./carousel";
+import { Separator } from "@/app/components/ui/separator";
 
 const slides = [Slide1, Slide2, Slide3, Slide4];
 

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./novidades/[slug]/post-prose.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -71,7 +72,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.039 0.02 240);
   --primary: hsl(20, 100%, 56%);
-  --primary-darker: oklch(0.51 0.191 20);
+  --primary-darker: hsl(20, 100%, 36%);
   --primary-foreground: oklch(0.98 0 0);
   --secondary: oklch(0.959 0.01 240);
   --secondary-foreground: oklch(0.1 0.015 240);

@@ -4,9 +4,9 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card";
+} from "@/app/components/ui/hover-card";
 import { useState } from "react";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { Categories, categoriesLabelMap } from "@/data/produtos";
 import ProdutosNavContent from "./produtos-nav-content";
 import { motion, AnimatePresence } from "framer-motion";

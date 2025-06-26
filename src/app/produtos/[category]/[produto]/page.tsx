@@ -13,7 +13,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
+} from "@/app/components/ui/breadcrumb";
 import Link from "next/link";
 
 export interface Product {
@@ -67,14 +67,6 @@ async function getProduct(id: string) {
   const { data: product } = await api.get<Product>(`/products/${id}`);
 
   return product;
-}
-
-export async function generateStaticParams() {
-  const { data: products } = await api.get<Product[]>(`/products`);
-
-  return products.map((product: Product) => ({
-    produto: String(product.id),
-  }));
 }
 
 export default async function ProductPage({

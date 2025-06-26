@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "redeservpro.com.br",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "www.ppa.com.br",
         pathname: "**",
       },

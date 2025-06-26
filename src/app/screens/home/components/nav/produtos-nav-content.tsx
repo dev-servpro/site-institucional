@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";

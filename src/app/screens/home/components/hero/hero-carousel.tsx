@@ -2,21 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
+} from "@/app/components/ui/carousel";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Categories, categoriesLabelMap } from "@/data/produtos";
 import Banner1 from "../../../../../../public/images/PPA_banner-lancamento_radar_1734609816813.webp";
 import Banner2 from "../../../../../../public/images/PPA_banner-lancamento_cameras-ip_1736858547247.webp";
 import Banner3 from "../../../../../../public/images/PPA_banner-lancamento_mola-aerea_1738176783484.webp";
 import Banner4 from "../../../../../../public/images/PPA_banner-lancamento_dz-stark-home_1732112536169.webp";
 import Link from "next/link";
+import { Categories, categoriesLabelMap } from "@/data/produtos";
 
 // Select main categories to feature with their background images
 const featuredCategories = [
