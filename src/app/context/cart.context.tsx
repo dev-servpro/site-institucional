@@ -1,5 +1,5 @@
+import { Plano } from "@/data/produtos";
 import React, { createContext, Dispatch, SetStateAction } from "react";
-import { Plano } from "../../../data/produtos";
 
 export const CartContext = createContext<{
   cart: Map<string, number>;

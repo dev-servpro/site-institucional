@@ -1,5 +1,6 @@
 "use client";
 
+import { Plano } from "@/data/produtos";
 import {
   Dispatch,
   SetStateAction,
@@ -7,7 +8,6 @@ import {
   useContext,
   useState,
 } from "react";
-import { Plano } from "../../../data/produtos";
 
 type PlanoType = `${Plano}`;
 

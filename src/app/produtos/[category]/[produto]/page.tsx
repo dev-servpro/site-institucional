@@ -3,7 +3,6 @@ import * as motion from "motion/react-client";
 import {
   capitalizeText,
   extractBulletPoints,
-  gerarUrlAmigavel,
   pegarImagemDosProdutosDoSistemaDeVendas,
 } from "@/lib/utils";
 import { api } from "@/lib/axios";
@@ -16,8 +15,6 @@ import {
   BreadcrumbPage,
 } from "@/app/components/ui/breadcrumb";
 import Link from "next/link";
-import { Category } from "../../page";
-import { Subcategory } from "../page";
 
 export interface Product {
   id: number;
@@ -66,80 +63,10 @@ export interface Product {
   users_id: number;
 }
 
-let cacheCategories: Category[] | null = null;
-let cacheSubcategories: Subcategory[] | null = null;
-let cacheProducts: Product[] | null = null;
-
 async function getProduct(id: string) {
   const { data: product } = await api.get<Product>(`/products/${id}`);
 
   return product;
-}
-
-export async function generateStaticParams() {
-  if (!cacheCategories || !cacheSubcategories || !cacheProducts) {
-    const [{ data: categories }, { data: subcategories }, { data: products }] =
-      await Promise.all([
-        api.get<Category[]>("/categories"),
-        api.get<Subcategory[]>("/subcategories"),
-        api.get<Product[]>("/products"),
-      ]);
-
-    cacheCategories = categories;
-    cacheSubcategories = subcategories;
-    cacheProducts = products;
-  }
-
-  const categoriesFiltered = cacheCategories
-    .filter((category) => {
-      if (
-        category.id === 4 ||
-        category.id === 5 ||
-        category.id === 7 ||
-        category.id === 10 ||
-        category.id === 9 ||
-        category.id === 11 ||
-        category.id === 13 ||
-        category.id === 18 ||
-        category.id === 19
-      ) {
-        return false;
-      }
-      return true;
-    })
-    .sort((a, b) => (a.id > b.id ? 1 : -1));
-
-  const categoriesWithSubcategories = categoriesFiltered.map((category) => {
-    const subcategoriesFiltered = cacheSubcategories?.filter(
-      (subcategory: Subcategory) =>
-        subcategory.produto_categoria_id === category.id
-    );
-    return {
-      ...category,
-      subcategories: subcategoriesFiltered,
-    };
-  });
-
-  const productsWithCategories = cacheProducts.map((product: Product) => {
-    const subcategory = cacheSubcategories?.find(
-      (subcategory: Subcategory) =>
-        subcategory.id === product.produto_subcategoria_id
-    );
-    const category = categoriesWithSubcategories.find(
-      (category) => category.id === subcategory?.produto_categoria_id
-    );
-    return {
-      ...product,
-      category: category ? category.slug : "",
-    };
-  });
-
-  return productsWithCategories.map((product) => {
-    return {
-      category: gerarUrlAmigavel(product.category),
-      produto: String(product.id),
-    };
-  });
 }
 
 export default async function ProductPage({

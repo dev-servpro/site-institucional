@@ -1,4 +1,5 @@
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/app/components/ui/card";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Card, CardHeader, CardTitle, CardFooter } from "@/app/components/ui/card";
 import Link from "next/link";
 import * as motion from "motion/react-client";
 import Image from "next/image";
@@ -13,7 +14,7 @@ export default async function Novidades() {
   let data;
   try {
     data = await getData();
-  } catch (error) {
+  } catch {
     return <div>Erro ao carregar posts.</div>;
   }
 
