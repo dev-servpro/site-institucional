@@ -4,10 +4,10 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
+} from "@/app/components/ui/carousel";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { type CarouselApi } from "@/components/ui/carousel";
+import { type CarouselApi } from "@/app/components/ui/carousel";
 import { type StaticImageData } from "next/image";
 
 interface AutoplayCarouselProps {

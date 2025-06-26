@@ -8,7 +8,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/app/components/ui/breadcrumb";
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import FilterArea from "@/app/screens/produtos/components/filter-area";

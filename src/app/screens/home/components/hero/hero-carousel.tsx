@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
+} from "@/app/components/ui/carousel";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Categories, categoriesLabelMap } from "@/data/produtos";

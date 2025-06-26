@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { capitalizeText } from "@/lib/utils";
 import * as motion from "motion/react-client";
 import Image from "next/image";

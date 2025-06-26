@@ -1,4 +1,4 @@
-import { Marquee } from "@/components/magicui/marquee";
+import { Marquee } from "@/app/components/magicui/marquee";
 import Image, { StaticImageData } from "next/image";
 import { Quote } from "lucide-react";
 import GerleneVeras from "../../../../../../public/images/Gerlene-Veras.webp";

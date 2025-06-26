@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { CarouselItem } from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
+import { CarouselItem } from "@/app/components/ui/carousel";
+import { Button } from "@/app/components/ui/button";
 import { motion } from "framer-motion";
 
 export default function HeroCarouselTerminaisFaciais() {

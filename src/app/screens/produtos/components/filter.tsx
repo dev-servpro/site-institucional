@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"; // shadcn/ui import
+import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group"; // shadcn/ui import
 import { motion } from "framer-motion";
 
 export type FilterOption = {
