@@ -5,11 +5,12 @@ import { Subcategory } from "@/app/produtos/[category]/page";
 import { Product } from "@/app/produtos/[category]/[produto]/page";
 
 export default async function HeaderWrapper() {
-  const [{ data: categories }, { data: subcategories }, {data: products}] = await Promise.all([
-    api.get<Category[]>("/categories"),
-    api.get<Subcategory[]>("/subcategories"),
-    api.get<Product[]>("/products"),
-  ]);
+  const [{ data: categories }, { data: subcategories }, { data: products }] =
+    await Promise.all([
+      api.get<Category[]>("/categories"),
+      api.get<Subcategory[]>("/subcategories"),
+      api.get<Product[]>("/products"),
+    ]);
   return (
     <Header
       categories={categories
@@ -21,7 +22,9 @@ export default async function HeaderWrapper() {
             category.id === 10 ||
             category.id === 9 ||
             category.id === 11 ||
+            category.id === 12 ||
             category.id === 13 ||
+            category.id === 16 ||
             category.id === 18 ||
             category.id === 19
           ) {

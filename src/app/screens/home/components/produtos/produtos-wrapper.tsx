@@ -16,9 +16,11 @@ export default async function ProdutosHomeWrapper() {
             category.id === 10 ||
             category.id === 9 ||
             category.id === 11 ||
+            category.id === 12 ||
             category.id === 13 ||
+            category.id === 16 ||
             category.id === 18 ||
-            category.id === 19  
+            category.id === 19
           ) {
             return false;
           }
