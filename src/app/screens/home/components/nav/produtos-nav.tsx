@@ -5,7 +5,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/app/components/ui/hover-card";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { Categories, categoriesLabelMap } from "@/data/produtos";
 import ProdutosNavContent from "./produtos-nav-content";
@@ -26,9 +26,14 @@ export default function ProdutosNav({
 }) {
   const [isMobileExpanded, setIsMobileExpanded] = useState(false);
   const [open, setOpen] = useState(false);
+  const [closedByClick, setClosedByClick] = useState(false);
   const [selectedMobileCategory, setSelectedMobileCategory] =
     useState<Categories | null>(null);
   const isMobile = useIsMobile();
+
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, []);
 
   if (isMobile) {
     return (
@@ -87,7 +92,10 @@ export default function ProdutosNav({
                         }
                         className="relativen ml-6 flex items-center justify-between w-full py-2 text-left transition-colors duration-200 group text-primary hover:text-primary/90 "
                       >
-                        <Link href="#" className="relative z-10 text-[14px] font-medium w-full">
+                        <Link
+                          href="#"
+                          className="relative z-10 text-[14px] font-medium w-full"
+                        >
                           {label}
                         </Link>
 
@@ -105,8 +113,25 @@ export default function ProdutosNav({
   }
 
   return (
-    <HoverCard open={open} openDelay={200} onOpenChange={setOpen}>
-      <HoverCardTrigger asChild>
+    <HoverCard
+      open={closedByClick ? false : open}
+      openDelay={200}
+      onOpenChange={setOpen}
+    >
+      <HoverCardTrigger
+        onClick={() => {
+          setOpen(!open);
+          setClosedByClick(true);
+        }}
+        onMouseLeave={() => {
+          if (!closedByClick) {
+            return;
+          }
+          setClosedByClick(false);
+          setOpen(false);
+        }}
+        asChild
+      >
         <button className="relative h-full px-4 flex items-center cursor-pointer text-primary/90 font-medium text-[14px] transition-colors duration-200 group hover:text-primary">
           <span className="relative z-10">Produtos</span>
           <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
@@ -128,6 +153,7 @@ export default function ProdutosNav({
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <ProdutosNavContent
+                handleClose={handleClose}
                 products={products}
                 categories={categories}
                 subcategories={subcategories}

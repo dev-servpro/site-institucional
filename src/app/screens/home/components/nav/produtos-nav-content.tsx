@@ -19,10 +19,12 @@ export default function ProdutosNavContent({
   categories,
   subcategories,
   products,
+  handleClose,
 }: {
   categories: Category[];
   subcategories: Subcategory[];
   products: Product[];
+  handleClose: () => void;
 }) {
   const [selectedCategory, setSelectedCategory] = useState<Category["id"]>(
     categories?.[0].id
@@ -61,20 +63,19 @@ export default function ProdutosNavContent({
                 data-selected={isSelected}
                 className={`
                     group
-                    cursor-pointer 
                     mx-3
                     rounded-lg
-                    hover:bg-slate-100
                     data-[selected=true]:bg-gradient-to-r
                     data-[selected=true]:from-slate-100
                     data-[selected=true]:to-slate-50
                     data-[selected=true]:text-slate-800
                     data-[selected=true]:font-medium
                     data-[selected=true]:shadow-sm
+                    data-[selected=true]:scale-[1.02]
                     text-sm 
                     py-3
                     px-4
-                    transition-all
+                    transition-colors
                     duration-300
                     flex
                     items-center
@@ -84,10 +85,6 @@ export default function ProdutosNavContent({
                     bg-white
                   `}
                 initial={false}
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.2 },
-                }}
               >
                 <span className="flex items-center gap-3 relative z-10">
                   <div className="relative w-6 h-6 opacity-80 group-hover:opacity-100 transition-opacity">
@@ -160,6 +157,7 @@ export default function ProdutosNavContent({
                           ?.slug ?? ""
                       )}?subcategory=${gerarUrlAmigavel(nome)}`}
                       key={id}
+                      onClick={handleClose}
                       className="group flex flex-col items-center text-center"
                     >
                       <div className="mb-3">
