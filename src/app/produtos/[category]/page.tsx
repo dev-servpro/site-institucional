@@ -16,7 +16,7 @@ import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const { data: categories } = await api.get<Category[]>("/categories");
-  return categories.map(({ slug }) => ({ category: slug }));
+  return categories.map(({ slug }) => ({ category: gerarUrlAmigavel(slug) }));
 }
 
 export interface Subcategory {
@@ -61,11 +61,6 @@ export default async function CardProduto({
   const { category: categoryParam } = await params;
   const { data: categories } = await api.get<Category[]>("/categories");
   const category = categories.find((category: Category) => {
-    console.log(
-      `Comparando ${gerarUrlAmigavel(category.slug)} com ${gerarUrlAmigavel(
-        categoryParam
-      )}`
-    );
     return gerarUrlAmigavel(category.slug) === gerarUrlAmigavel(categoryParam);
   });
 
@@ -76,7 +71,9 @@ export default async function CardProduto({
   const { data: subcategoriesUnfiltered } = await api.get<Subcategory[]>(
     `/subcategories`
   );
-  const { data: products } = await api.get<Product[]>(`/products`);
+  const { data: products } = await api.get<Product[]>(
+    `/products/filter?is_visivel=1`
+  );
 
   const subcategories = subcategoriesUnfiltered.filter(
     (subcategory: Subcategory) =>

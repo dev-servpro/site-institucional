@@ -5,7 +5,6 @@ import { useState, useMemo } from "react";
 import {
   capitalizeText,
   extractBulletPoints,
-  gerarUrlAmigavel,
   pegarImagemDosProdutosDoSistemaDeVendas,
 } from "@/lib/utils";
 import ProductCard from "./product-card";

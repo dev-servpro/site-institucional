@@ -9,7 +9,7 @@ export default async function HeaderWrapper() {
     await Promise.all([
       api.get<Category[]>("/categories"),
       api.get<Subcategory[]>("/subcategories"),
-      api.get<Product[]>("/products"),
+      api.get<Product[]>("/products/filter?is_visivel=1"),
     ]);
   return (
     <Header
