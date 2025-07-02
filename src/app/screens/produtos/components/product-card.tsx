@@ -12,61 +12,50 @@ export default function ProductCard({
   bulletPoints,
   id,
   params,
+  cor,
 }: {
   imgUrl: string;
   title: string;
   bulletPoints: string[];
   id: number | string;
   params: { category: string };
+  cor?: string;
 }) {
   return (
-    <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden">
-      {/* Product Image */}
-      <motion.div
-        className="md:w-1/2 flex items-center justify-center bg-white"
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7 }}
-      >
+    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full border border-amber-100 group">
+      <div className="relative w-full h-56 bg-gray-50 flex items-center justify-center overflow-hidden">
         <Image
           quality={100}
           width={300}
           height={300}
           src={imgUrl}
           alt={title}
-          className="w-80 h-auto p-8"
+          className="object-contain w-full h-full p-6 transition-transform duration-300"
         />
-      </motion.div>
-
-      {/* Product Details */}
-      <motion.div
-        className="md:w-1/2 p-8 flex flex-col justify-center bg-gray-50"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-      >
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">{title}</h1>
-        <ul className="mb-6 space-y-2">
-          {bulletPoints?.map((point) => (
-            <li key={title + point} className="flex items-center">
-              <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: capitalizeText(point, true),
-                }}
-              ></span>
+      </div>
+      <div className="flex-1 flex flex-col px-5 py-4">
+        <h2 className="text-lg font-bold text-gray-800 mb-1 truncate" title={title}>{title}</h2>
+        <div className="mb-1 text-xs text-gray-500">Cód: <span className="font-medium text-gray-700">{id}</span></div>
+        {cor && (
+          <div className="mb-1 text-xs text-gray-500">Cor: <span className="font-medium text-gray-700">{cor}</span></div>
+        )}
+        <ul className="mb-4 space-y-1 text-xs text-gray-700">
+          {bulletPoints?.slice(0, 3).map((point) => (
+            <li key={title + point} className="flex items-start gap-2">
+              <span className="mt-1 w-2 h-2 bg-amber-700 rounded-full flex-shrink-0"></span>
+              <span className="line-clamp-2" dangerouslySetInnerHTML={{ __html: capitalizeText(point, true) }}></span>
             </li>
           ))}
         </ul>
+        <div className="mt-auto pt-2">
         <MotionButton
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary/80 transition"
+            className="w-full bg-amber-700 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-amber-800 transition"
           asChild
         >
           <Link href={`/produtos/${params.category}/${id}`}>Saiba Mais</Link>
         </MotionButton>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
