@@ -42,6 +42,7 @@ export interface Product {
   imagem: string;
   video: string;
   destaque: number;
+  is_visivel: 0 | 1;
 }
 
 const dmSans = DM_Sans({
@@ -82,8 +83,11 @@ export default async function CardProduto({
       subcategory.produto_categoria_id === category.id
   );
 
-  const filteredProducts = products.filter((product: Product) =>
-    subcategories.map(({ id }) => id).includes(product.produto_subcategoria_id)
+  const filteredProducts = products.filter(
+    (product: Product) =>
+      subcategories
+        .map(({ id }) => id)
+        .includes(product.produto_subcategoria_id) && product.is_visivel === 1
   );
 
   return (
