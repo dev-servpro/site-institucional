@@ -7,7 +7,6 @@ import {
 } from "@/app/components/ui/hover-card";
 import { useCallback, useState } from "react";
 import { useIsMobile } from "@/hooks/use-is-mobile";
-import { Categories, categoriesLabelMap } from "@/data/produtos";
 import ProdutosNavContent from "./produtos-nav-content";
 import { motion, AnimatePresence } from "framer-motion";
 import { Subcategory } from "@/app/produtos/[category]/page";
@@ -27,8 +26,7 @@ export default function ProdutosNav({
   const [isMobileExpanded, setIsMobileExpanded] = useState(false);
   const [open, setOpen] = useState(false);
   const [closedByClick, setClosedByClick] = useState(false);
-  const [selectedMobileCategory, setSelectedMobileCategory] =
-    useState<Categories | null>(null);
+  const [selectedMobileCategory, setSelectedMobileCategory] = useState<number | null>(null);
   const isMobile = useIsMobile();
 
   const handleClose = useCallback(() => {
@@ -78,32 +76,57 @@ export default function ProdutosNav({
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="mt-2 pl-4">
-                {Array.from(categoriesLabelMap.entries()).map(
-                  ([category, { label }]) => (
-                    <div key={category} className="mb-2">
-                      <button
-                        onClick={() =>
-                          setSelectedMobileCategory(
-                            selectedMobileCategory === category
-                              ? null
-                              : category
-                          )
-                        }
-                        className="relativen ml-6 flex items-center justify-between w-full py-2 text-left transition-colors duration-200 group text-primary hover:text-primary/90 "
+              <div className="mt-2">
+                {categories.map((category) => (
+                  <div key={category.id}>
+                    <button
+                      onClick={() =>
+                        setSelectedMobileCategory(
+                          selectedMobileCategory === category.id ? null : category.id
+                        )
+                      }
+                      className="block w-full text-left px-4 pl-8 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary capitalize"
+                    >
+                      <span className="capitalize">{category.nome.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())}</span>
+                      <svg
+                        className={`w-4 h-4 ml-2 inline transition-transform ${selectedMobileCategory === category.id ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        <Link
-                          href="#"
-                          className="relative z-10 text-[14px] font-medium w-full"
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    <AnimatePresence>
+                      {selectedMobileCategory === category.id && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          {label}
-                        </Link>
-
-                        <span className="absolute inset-0 w-full h-full bg-white/0 transition-colors duration-200 group-hover:bg-white/10" />
-                      </button>
-                    </div>
-                  )
-                )}
+                          {subcategories
+                            .filter((sub) => sub.produto_categoria_id === category.id)
+                            .map((sub) => (
+                              <Link
+                                key={sub.id}
+                                href="#"
+                                className="block pl-12 px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary capitalize"
+                                onClick={() => setIsMobileExpanded(false)}
+                              >
+                                {sub.nome.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())}
+                              </Link>
+                            ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
               </div>
             </motion.div>
           )}

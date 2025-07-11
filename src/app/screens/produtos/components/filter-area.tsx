@@ -5,10 +5,11 @@ import { useState, useMemo } from "react";
 import {
   capitalizeText,
   extractBulletPoints,
+  gerarUrlAmigavel,
   pegarImagemDosProdutosDoSistemaDeVendas,
 } from "@/lib/utils";
 import ProductCard from "./product-card";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 export default function FilterArea({
   subcategories,
@@ -18,8 +19,16 @@ export default function FilterArea({
   filteredProducts: Product[];
 }) {
   const params = useParams();
+  const searchParams = useSearchParams();
+  const subcategorySlug = searchParams.get("subcategory");
+
+  // Find subcategory by slug (using gerarUrlAmigavel for comparison)
+  const initialSub = subcategories.find(
+    (sub) =>
+      gerarUrlAmigavel(sub.nome) === gerarUrlAmigavel(subcategorySlug || "")
+  );
   const [selectedSub, setSelectedSub] = useState<string>(
-    String(subcategories?.[0]?.id)
+    initialSub ? String(initialSub.id) : String(subcategories?.[0]?.id)
   );
   const [search, setSearch] = useState("");
 

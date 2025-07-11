@@ -87,6 +87,11 @@ export default async function CardProduto({
         .includes(product.produto_subcategoria_id) && product.is_visivel === 1
   );
 
+  // Only show subcategories that have at least one valid product
+  const subcategoriesWithProducts = subcategories.filter((sub) =>
+    filteredProducts.some((product) => product.produto_subcategoria_id === sub.id)
+  );
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-2 2xl:py-4">
@@ -122,11 +127,10 @@ export default async function CardProduto({
         <Suspense fallback={<div>Carregando filtros...</div>}>
           <FilterArea
             filteredProducts={filteredProducts}
-            subcategories={subcategories}
+            subcategories={subcategoriesWithProducts}
           />
         </Suspense>
       </div>
-      {/* Adicione o conteúdo dos produtos aqui */}
     </div>
   );
 }
