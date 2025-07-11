@@ -2,7 +2,7 @@ import Image from "next/image";
 import * as motion from "motion/react-client";
 import {
   capitalizeText,
-  extractBulletPoints,
+  gerarUrlAmigavel,
   pegarImagemDosProdutosDoSistemaDeVendas,
 } from "@/lib/utils";
 import { api } from "@/lib/axios";
@@ -15,6 +15,8 @@ import {
   BreadcrumbPage,
 } from "@/app/components/ui/breadcrumb";
 import Link from "next/link";
+import { Category } from "../../page";
+import { Subcategory } from "../page";
 
 export interface Product {
   id: number;
@@ -63,9 +65,31 @@ export interface Product {
   users_id: number;
 }
 
+
+
+export async function generateStaticParams() {
+  const { data: categories } = await api.get<Category[]>("/categories");
+  const { data: subcategories } = await api.get<Subcategory[]>(
+    `/subcategories`
+  );
+  const { data: products } = await api.get<Product[]>(
+    `/products/filter?is_visivel=1`
+  );
+  const params = [];
+  for (const category of categories) {
+    for (const subcategory of subcategories) {
+      for (const product of products) {
+        if (subcategory.produto_categoria_id === category.id && product.produto_subcategoria_id === subcategory.id) {
+          params.push({ category: gerarUrlAmigavel(category.slug), produto: product.id.toString() });
+        }
+      }
+    }
+  }
+  return params;
+}
+
 async function getProduct(id: string) {
   const { data: product } = await api.get<Product>(`/products/${id}`);
-
   return product;
 }
 
@@ -84,7 +108,14 @@ export default async function ProductPage({
       </div>
     );
   }
-  const bullets = extractBulletPoints(product.caracteristicas);
+  const hasFeatures = product.caracteristicas && product.caracteristicas.trim() !== "";
+  const hasShipping = product.tipo_frete && product.tipo_frete.trim() !== "";
+  const hasDescription = product.descricao && product.descricao.trim() !== "";
+  const hasVideo = product.video && product.video.trim() !== "";
+  function getYouTubeId(url: string) {
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+    return match ? match[1] : null;
+  }
 
   return (
     <div>
@@ -92,7 +123,7 @@ export default async function ProductPage({
       <section className="bg-white shadow">
         <div className="container mx-auto">
           <div className="max-w-7xl pl-8 py-6 flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-800">{product.nome}</h1>
+            <h1 title={product.nome} className="text-2xl font-bold text-gray-800 max-w-2xl whitespace-nowrap overflow-hidden text-ellipsis">{product.nome}</h1>
             <span className="text-sm text-gray-500">Cód: {product.codigo}</span>
           </div>
         </div>
@@ -129,87 +160,81 @@ export default async function ProductPage({
       </div>
 
       {/* Main Content */}
-      <main className="container max-w-7xl mx-auto py-10 pt-2 px-4 grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Product Image */}
-        <motion.div
-          className="flex items-center justify-center bg-white rounded-xl shadow-lg p-8"
-          initial={{ x: -60, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Image
-            src={
-              pegarImagemDosProdutosDoSistemaDeVendas(product.imagem) ||
-              "/placeholder-product.jpg"
-            }
-            width={300}
-            height={300}
-            alt={product.nome}
-            className="w-full max-w-xs object-contain"
-          />
-        </motion.div>
-
+      <main className="container max-w-4xl mx-auto py-12 px-4 flex flex-col gap-8">
+        {/* First Row: Two-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+          {/* Image */}
+          <div className="flex flex-col items-center bg-white rounded-xl shadow-lg p-8">
+            <Image
+              src={
+                pegarImagemDosProdutosDoSistemaDeVendas(product.imagem) ||
+                "/placeholder-product.jpg"
+              }
+              width={350}
+              height={350}
+              alt={product.nome}
+              className="object-contain max-w-[220px] sm:max-w-[260px] md:max-w-[300px] w-full h-auto mx-auto"
+            />
+            <span className="block text-xs text-gray-400 mt-3 text-center">Imagem meramente ilustrativa</span>
+          </div>
+          {/* Price and Description stacked */}
+          <div className="flex flex-col gap-6 justify-start w-full">
+            <div className="flex flex-col items-center md:items-start justify-center w-full">
+              <span className="block text-base text-gray-700 font-medium mb-1">A partir de</span>
+              <span className="text-3xl font-bold text-amber-700">R$ {Number(product.valor_por).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+            </div>
+            {/* Description (rich HTML) */}
+            {hasDescription && (
+              <div className="px-2 sm:px-4 py-4 bg-white/80 rounded-xl shadow-sm border border-amber-50 flex flex-col justify-center">
+                <h3 className="font-semibold text-gray-700 mb-4 text-base">Descrição</h3>
+                <div
+                  className="prose prose-slate max-w-none text-base"
+                  dangerouslySetInnerHTML={{ __html: product.descricao }}
+                />
+              </div>
+            )}
+          </div>
+        </div>
         {/* Product Details */}
         <motion.div
-          className="flex flex-col justify-between"
-          initial={{ x: 60, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          className="flex flex-col gap-10"
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {/* Price and Installments */}
-          <div>
-            <div className="mb-2">
-              {product.valor_de !== product.valor_por ? (
-                <span className="text-gray-400 line-through text-lg mr-2">
-                  R$ {Number(product.valor_de).toFixed(2)}
-                </span>
-              ) : null}
-              <span className="text-3xl font-bold text-primary">
-                R$ {Number(product.valor_por).toFixed(2)}
-              </span>
-            </div>
-            <div className="text-sm text-gray-500 mb-4">
-              parcelamos em até {product.parcelas}x
-            </div>
-            {/* Features */}
-            <h2 className="text-lg font-semibold text-gray-700 mb-2">
-              Características
-            </h2>
-            <ul className="mb-6 space-y-2">
-              {bullets.map((item, idx) => (
-                <li key={idx} className="flex items-center text-gray-700">
-                  <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: capitalizeText(item, true),
-                    }}
-                  ></span>
-                </li>
-              ))}
-            </ul>
-            {/* Shipping */}
-            <div className="mb-4">
-              <span className="inline-block bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded">
-                Frete:{" "}
-                {product.tipo_frete === "transportadora"
-                  ? "Transportadora"
-                  : product.tipo_frete}
-              </span>
-            </div>
-            {/* Description */}
-            <div className="mb-4">
-              <h3 className="font-semibold text-gray-700 mb-1">Descrição</h3>
-              <div
-                className="text-gray-600 text-sm"
-                dangerouslySetInnerHTML={{ __html: product.descricao }}
+          {/* Video */}
+          {hasVideo && getYouTubeId(product.video) && (
+            <div className="w-full aspect-video max-w-xl rounded-lg overflow-hidden border border-gray-200 shadow mb-8">
+              <iframe
+                src={`https://www.youtube.com/embed/${getYouTubeId(product.video)}`}
+                title="YouTube video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full min-h-[200px]"
               />
             </div>
-          </div>
+          )}
+          {/* Features (rich HTML) */}
+          {hasFeatures && (
+            <div className="px-2 sm:px-4 py-4 bg-white/80 rounded-xl shadow-sm border border-amber-50">
+              <h2 className="text-lg font-semibold text-gray-700 mb-6">Características</h2>
+              <div
+                className="space-y-2 [&>div]:bg-slate-50 [&>div]:border [&>div]:border-slate-200 [&>div]:rounded-lg [&>div]:px-4 [&>div]:py-2 [&>div]:mb-2 [&>div]:text-slate-700 [&>div]:font-medium [&>div]:text-base [&>div]:leading-relaxed [&>p]:text-slate-500 [&>p]:text-base [&>p]:my-2 [&>p]:leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: product.caracteristicas }}
+              />
+            </div>
+          )}
+          {/* Shipping */}
+          {hasShipping && (
+            <div className="mb-2">
+              <span className="inline-block bg-gray-200 text-gray-700 text-xs px-4 py-2 rounded mb-2">
+                Frete: {product.tipo_frete === "transportadora" ? "Transportadora" : product.tipo_frete}
+              </span>
+            </div>
+          )}
           {/* Action Button */}
           <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="bg-primary text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary/90 transition self-start"
+            className="bg-primary text-white w-full md:w-auto px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary/90 transition mt-2"
           >
             Solicitar Orçamento
           </motion.button>

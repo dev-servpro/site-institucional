@@ -8,7 +8,6 @@ import {
   Instagram,
   Youtube,
   Linkedin,
-  ChevronDown,
 } from "lucide-react";
 
 export default function Footer() {
@@ -33,29 +32,58 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold mb-6 text-white">Menu</h3>
             <nav className="space-y-4">
-              <div className="group">
-                <button className="flex items-center text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide">
-                  <span>Sobre Nós</span>
-                  <ChevronDown className="w-4 h-4 ml-1.5 opacity-70 group-hover:opacity-100" />
-                </button>
-              </div>
-              <div className="group">
-                <button className="flex items-center text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide">
-                  <span>Mídia</span>
-                  <ChevronDown className="w-4 h-4 ml-1.5 opacity-70 group-hover:opacity-100" />
-                </button>
-              </div>
+              <Link
+                href="/sobre-nos"
+                className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
+              >
+                Sobre Nós
+              </Link>
+              <Link
+                href="/novidades"
+                className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
+              >
+                Mídia
+              </Link>
               <Link
                 href="/produtos"
                 className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
               >
                 Produtos
               </Link>
-              <div className="group">
-                <button className="flex items-center text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide">
-                  <span>Soluções</span>
-                  <ChevronDown className="w-4 h-4 ml-1.5 opacity-70 group-hover:opacity-100" />
-                </button>
+              <div className="space-y-2">
+                <span className="block text-gray-300 text-[15px] tracking-wide font-semibold mb-1">Soluções</span>
+                <a
+                  href="https://planos.redeservpro.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
+                >
+                  Planos
+                </a>
+                <a
+                  href="https://lp.redeservpro.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
+                >
+                  Esquadrias
+                </a>
+                <a
+                  href="https://intermaxx.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
+                >
+                  Interfone Interativo
+                </a>
+                <a
+                  href="https://fonemaxx.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
+                >
+                  Telefonia em Nuvem
+                </a>
               </div>
               <Link
                 href="/onde-encontrar"

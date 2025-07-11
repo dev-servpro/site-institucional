@@ -191,7 +191,7 @@ export default function Header({
               className="lg:hidden overflow-hidden bg-[#F5F5F5] absolute top-full left-0 right-0 border-t border-primary/10 shadow-lg"
             >
               <motion.ul
-                className="space-y-1"
+                className="space-y-1 py-4"
                 initial="closed"
                 animate="open"
                 exit="closed"
@@ -204,47 +204,70 @@ export default function Header({
                   },
                 }}
               >
-                {[
-                  { href: "/sobre-nos", text: "Sobre Nós" },
-                  { href: "/produtos", text: "Produtos" },
-                  { href: "/novidades", text: "Novidades" },
-                  {
-                    href: "https://api.whatsapp.com/send/?phone=558000901234&text=Ol%C3%A1%2C+gostaria+de+saber+mais+detalhes.&type=phone_number&app_absent=0",
-                    text: "Contato",
-                  },
-                ].map((item, index) => (
-                  <motion.li
-                    key={item.text || index}
-                    variants={{
-                      open: {
-                        y: 0,
-                        opacity: 1,
-                        transition: {
-                          y: { stiffness: 1000, velocity: -100 },
-                        },
-                      },
-                      closed: {
-                        y: 50,
-                        opacity: 0,
-                        transition: {
-                          y: { stiffness: 1000 },
-                        },
-                      },
-                    }}
-                    className="group"
+                <motion.li
+                  variants={{
+                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
+                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                  }}
+                  className="group"
+                >
+                  <Link
+                    href="/sobre-nos"
+                    className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
+                    onClick={() => setIsMenuOpen(false)}
                   >
-                    {/* {item.component || (
-                      <Link
-                        href={item.href}
-                        className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <span className="relative z-10">{item.text}</span>
-                        <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
-                      </Link>
-                    )} */}
-                  </motion.li>
-                ))}
+                    <span className="relative z-10">Sobre Nós</span>
+                    <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
+                  </Link>
+                </motion.li>
+                <motion.li
+                  variants={{
+                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
+                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                  }}
+                  className="group"
+                >
+                  {/* ProdutosNav dropdown for mobile, only one entry for products */}
+                  <ProdutosNav
+                    products={products}
+                    categories={categories}
+                    subcategories={subcategories}
+                  />
+                </motion.li>
+                <motion.li
+                  variants={{
+                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
+                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                  }}
+                  className="group"
+                >
+                  <Link
+                    href="/novidades"
+                    className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="relative z-10">Novidades</span>
+                    <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
+                  </Link>
+                </motion.li>
+                <motion.li
+                  variants={{
+                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
+                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                  }}
+                  className="group"
+                >
+                  <a
+                    href="https://api.whatsapp.com/send/?phone=558000901234&text=Ol%C3%A1%2C+gostaria+de+saber+mais+detalhes.&type=phone_number&app_absent=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="relative z-10">Contato</span>
+                    <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
+                  </a>
+                </motion.li>
               </motion.ul>
             </motion.div>
           )}

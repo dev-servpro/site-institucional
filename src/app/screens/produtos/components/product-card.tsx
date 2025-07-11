@@ -35,7 +35,6 @@ export default function ProductCard({
       </div>
       <div className="flex-1 flex flex-col px-5 py-4">
         <h2 className="text-lg font-bold text-gray-800 mb-1 truncate" title={title}>{title}</h2>
-        <div className="mb-1 text-xs text-gray-500">Cód: <span className="font-medium text-gray-700">{id}</span></div>
         {cor && (
           <div className="mb-1 text-xs text-gray-500">Cor: <span className="font-medium text-gray-700">{cor}</span></div>
         )}
