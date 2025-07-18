@@ -11,6 +11,7 @@ import { DM_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { api } from "@/lib/axios";
 import CardCategorie from "../screens/produtos/components/card-categorie";
+import { Product, Subcategory } from "./[category]/page";
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
@@ -27,7 +28,30 @@ export interface Category {
 }
 
 export default async function Produtos() {
-  const { data: categories } = await api.get<Category[]>("/categories");
+  const [{ data: categories }, { data: subcategories }, { data: products }] =
+    await Promise.all([
+      api.get<Category[]>("/categories"),
+      api.get<Subcategory[]>("/subcategories"),
+      api.get<Product[]>("/products/filter?is_visivel=1"),
+    ]);
+
+  // Get the set of category and subcategory IDs that appear in the products
+  const productSubcategoryIds = new Set(
+    products.map((p) => p.produto_subcategoria_id)
+  );
+  const filteredSubcategories = subcategories.filter((sub) =>
+    productSubcategoryIds.has(sub.id)
+  );
+  const productCategoryIds = new Set(
+    filteredSubcategories.map((sub) => sub.produto_categoria_id)
+  );
+  const filteredCategories = categories
+    .filter(
+      (category) =>
+        productCategoryIds.has(category.id) &&
+        ![4, 5, 7, 10, 9, 11, 12, 13, 16, 18, 19].includes(category.id)
+    )
+    .sort((a, b) => (a.id > b.id ? 1 : -1));
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +82,7 @@ export default async function Produtos() {
       <div className={cn(dmSans.className, "flex py-8")}>
         <div className="flex-1 grow ml-4">
           <ul className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 sm:gap-6 max-w-300 mx-auto">
-            {categories
+            {filteredCategories
               .filter((category) => {
                 if (
                   category.id === 4 ||
