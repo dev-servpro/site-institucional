@@ -65,8 +65,6 @@ export interface Product {
   users_id: number;
 }
 
-
-
 export async function generateStaticParams() {
   const { data: categories } = await api.get<Category[]>("/categories");
   const { data: subcategories } = await api.get<Subcategory[]>(
@@ -79,8 +77,14 @@ export async function generateStaticParams() {
   for (const category of categories) {
     for (const subcategory of subcategories) {
       for (const product of products) {
-        if (subcategory.produto_categoria_id === category.id && product.produto_subcategoria_id === subcategory.id) {
-          params.push({ category: gerarUrlAmigavel(category.slug), produto: product.id.toString() });
+        if (
+          subcategory.produto_categoria_id === category.id &&
+          product.produto_subcategoria_id === subcategory.id
+        ) {
+          params.push({
+            category: gerarUrlAmigavel(category.slug),
+            produto: product.id.toString(),
+          });
         }
       }
     }
@@ -108,12 +112,15 @@ export default async function ProductPage({
       </div>
     );
   }
-  const hasFeatures = product.caracteristicas && product.caracteristicas.trim() !== "";
+  const hasFeatures =
+    product.caracteristicas && product.caracteristicas.trim() !== "";
   const hasShipping = product.tipo_frete && product.tipo_frete.trim() !== "";
   const hasDescription = product.descricao && product.descricao.trim() !== "";
   const hasVideo = product.video && product.video.trim() !== "";
   function getYouTubeId(url: string) {
-    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+    const match = url.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/
+    );
     return match ? match[1] : null;
   }
 
@@ -123,7 +130,12 @@ export default async function ProductPage({
       <section className="bg-white shadow">
         <div className="container mx-auto">
           <div className="max-w-7xl pl-8 py-6 flex items-center justify-between">
-            <h1 title={product.nome} className="text-2xl font-bold text-gray-800 max-w-2xl whitespace-nowrap overflow-hidden text-ellipsis">{product.nome}</h1>
+            <h1
+              title={product.nome}
+              className="text-2xl font-bold text-gray-800 max-w-2xl whitespace-nowrap overflow-hidden text-ellipsis"
+            >
+              {product.nome}
+            </h1>
             <span className="text-sm text-gray-500">Cód: {product.codigo}</span>
           </div>
         </div>
@@ -175,18 +187,29 @@ export default async function ProductPage({
               alt={product.nome}
               className="object-contain max-w-[220px] sm:max-w-[260px] md:max-w-[300px] w-full h-auto mx-auto"
             />
-            <span className="block text-xs text-gray-400 mt-3 text-center">Imagem meramente ilustrativa</span>
+            <span className="block text-xs text-gray-400 mt-3 text-center">
+              Imagem meramente ilustrativa
+            </span>
           </div>
           {/* Price and Description stacked */}
           <div className="flex flex-col gap-6 justify-start w-full">
             <div className="flex flex-col items-center md:items-start justify-center w-full">
-              <span className="block text-base text-gray-700 font-medium mb-1">A partir de</span>
-              <span className="text-3xl font-bold text-amber-700">R$ {Number(product.valor_por).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+              <span className="block text-base text-gray-700 font-medium mb-1">
+                A partir de
+              </span>
+              <span className="text-3xl font-bold text-amber-700">
+                R${" "}
+                {Number(product.valor_por).toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                })}
+              </span>
             </div>
             {/* Description (rich HTML) */}
             {hasDescription && (
               <div className="px-2 sm:px-4 py-4 bg-white/80 rounded-xl shadow-sm border border-amber-50 flex flex-col justify-center">
-                <h3 className="font-semibold text-gray-700 mb-4 text-base">Descrição</h3>
+                <h3 className="font-semibold text-gray-700 mb-4 text-base">
+                  Descrição
+                </h3>
                 <div
                   className="prose prose-slate max-w-none text-base"
                   dangerouslySetInnerHTML={{ __html: product.descricao }}
@@ -206,7 +229,9 @@ export default async function ProductPage({
           {hasVideo && getYouTubeId(product.video) && (
             <div className="w-full aspect-video max-w-xl rounded-lg overflow-hidden border border-gray-200 shadow mb-8">
               <iframe
-                src={`https://www.youtube.com/embed/${getYouTubeId(product.video)}`}
+                src={`https://www.youtube.com/embed/${getYouTubeId(
+                  product.video
+                )}`}
                 title="YouTube video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -217,7 +242,9 @@ export default async function ProductPage({
           {/* Features (rich HTML) */}
           {hasFeatures && (
             <div className="px-2 sm:px-4 py-4 bg-white/80 rounded-xl shadow-sm border border-amber-50">
-              <h2 className="text-lg font-semibold text-gray-700 mb-6">Características</h2>
+              <h2 className="text-lg font-semibold text-gray-700 mb-6">
+                Características
+              </h2>
               <div
                 className="space-y-2 [&>div]:bg-slate-50 [&>div]:border [&>div]:border-slate-200 [&>div]:rounded-lg [&>div]:px-4 [&>div]:py-2 [&>div]:mb-2 [&>div]:text-slate-700 [&>div]:font-medium [&>div]:text-base [&>div]:leading-relaxed [&>p]:text-slate-500 [&>p]:text-base [&>p]:my-2 [&>p]:leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: product.caracteristicas }}
@@ -228,15 +255,22 @@ export default async function ProductPage({
           {hasShipping && (
             <div className="mb-2">
               <span className="inline-block bg-gray-200 text-gray-700 text-xs px-4 py-2 rounded mb-2">
-                Frete: {product.tipo_frete === "transportadora" ? "Transportadora" : product.tipo_frete}
+                Frete:{" "}
+                {product.tipo_frete === "transportadora"
+                  ? "Transportadora"
+                  : product.tipo_frete}
               </span>
             </div>
           )}
           {/* Action Button */}
-          <motion.button
-            className="bg-primary text-white w-full md:w-auto px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary/90 transition mt-2"
-          >
-            Solicitar Orçamento
+          <motion.button className="bg-primary text-white w-full md:w-auto px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary/90 transition mt-2">
+            <Link
+              href={`https://api.whatsapp.com/send/?phone=558000901234&text=Ol%C3%A1%2C+gostaria+de+saber+mais+detalhes+sobre+o+produto+${product.nome}.&type=phone_number&app_absent=0`}
+              target="_blank"
+              className="block w-full h-full"
+            >
+              Solicitar Orçamento
+            </Link>
           </motion.button>
         </motion.div>
       </main>
