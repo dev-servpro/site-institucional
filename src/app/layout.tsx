@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Footer from "./components/footer";
 import HeaderWrapper from "./screens/home/components/header-wrapper";
+import Script from "next/script";
 
 const poppins = Montserrat({
   variable: "--font-poppins",
@@ -24,12 +25,33 @@ export default function RootLayout({
 }>) {
   return (
     <html className="scroll-smooth" lang="pt-Br">
+      {/* Google Tag Manager */}
+      <Script
+        id="gtm-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-WB96BBMX');
+          `
+        }}
+      />
+      {/* End Google Tag Manager */}
       <body
         className={cn(
           `antialiased min-h-screen bg-[#EFEAE3] flex flex-col`,
           poppins.className
         )}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB96BBMX"
+            height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe>
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <HeaderWrapper />
         <main className="grow flex-1">{children}</main>
         <Footer />
