@@ -7,8 +7,8 @@ import {
   Building,
   Clock,
 } from "lucide-react";
-import Slide1 from "../../../../../../public/images/0DB21C38-8B4C-412B-9898-83ADE19D3629.webp";
-import Slide2 from "../../../../../../public/images/7E0D4C5A-8A9E-4F37-9CA5-C4AC13E58480.webp";
+import Slide1 from "../../../../../../public/images/galpao.png";
+import Slide2 from "../../../../../../public/images/galpao2.png";
 import Slide3 from "../../../../../../public/images/SERVPRO-FILIAL-TERESINA-2.webp";
 import Slide4 from "../../../../../../public/images/Catalogo-SERVPRO-2023-01-1024x1024.webp";
 import { AutoplayCarousel } from "./carousel";
