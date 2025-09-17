@@ -22,6 +22,7 @@ export async function generateStaticParams() {
 export interface Subcategory {
   id: number;
   produto_categoria_id: number;
+  codigo: string | number;
   nome: string;
   slug: string;
   ordem: number;
@@ -30,6 +31,7 @@ export interface Subcategory {
 export interface Product {
   id: number;
   produto_subcategoria_id: number;
+  codigo: string;
   nome: string;
   slug: string;
   valor_de: string;
