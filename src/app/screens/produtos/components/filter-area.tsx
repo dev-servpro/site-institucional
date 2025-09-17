@@ -84,6 +84,7 @@ export default function FilterArea({
                 key={product.id}
                 imgUrl={pegarImagemDosProdutosDoSistemaDeVendas(product.imagem)}
                   id={product.id}
+                  codigo={product.codigo}
                   title={product.nome}
                   params={params as { category: string }}
                   bulletPoints={extractBulletPoints(product.caracteristicas)}
