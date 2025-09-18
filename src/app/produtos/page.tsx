@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { api } from "@/lib/axios";
 import CardCategorie from "../screens/produtos/components/card-categorie";
 import { Product, Subcategory } from "./[category]/page";
+export const dynamic = 'force-dynamic';
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
@@ -28,12 +29,30 @@ export interface Category {
 }
 
 export default async function Produtos() {
-  const [{ data: categories }, { data: subcategories }, { data: products }] =
-    await Promise.all([
-      api.get<Category[]>("/categories"),
-      api.get<Subcategory[]>("/subcategories"),
-      api.get<Product[]>("/products/filter?is_visivel=1"),
+  let categories: Category[] = [];
+  let subcategories: Subcategory[] = [];
+  let products: Product[] = [];
+
+  try {
+    const [
+      { data: categoriesData },
+      { data: subcategoriesData },
+      { data: productsData },
+    ] = await Promise.all([
+      api.get<Category[]>("/categories", { timeout: 8000 }),
+      api.get<Subcategory[]>("/subcategories", { timeout: 8000 }),
+      api.get<Product[]>("/products/filter?is_visivel=1", { timeout: 8000 }),
     ]);
+
+    categories = categoriesData ?? [];
+    subcategories = subcategoriesData ?? [];
+    products = productsData ?? [];
+  } catch {
+    // Fallback seguro para não quebrar o build/SSR caso a API falhe
+    categories = [];
+    subcategories = [];
+    products = [];
+  }
 
   // Get the set of category and subcategory IDs that appear in the products
   const productSubcategoryIds = new Set(

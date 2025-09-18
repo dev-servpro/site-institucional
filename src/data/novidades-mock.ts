@@ -7,7 +7,7 @@ export type MockWpPost = {
   slug: string;
   title: { rendered: string };
   content: { rendered: string };
-  _embedded?: { [key: string]: Array<any> } & {
+  _embedded?: { [key: string]: Array<Record<string, unknown>> } & {
     "wp:featuredmedia"?: MockWpMedia[];
   };
 };
