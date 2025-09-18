@@ -2,14 +2,26 @@ import { api } from "@/lib/axios";
 import HomeProdutosIndex from "./produtos-index";
 import { Category } from "@/app/produtos/page";
 import { Product, Subcategory } from "@/app/produtos/[category]/page";
+export const dynamic = 'force-dynamic';
 
 export default async function ProdutosHomeWrapper() {
-  const [{ data: categories }, { data: subcategories }, { data: products }] =
-    await Promise.all([
-      api.get<Category[]>("/categories"),
-      api.get<Subcategory[]>("/subcategories"),
-      api.get<Product[]>("/products/filter?is_visivel=1"),
+  let categories: Category[] = [];
+  let subcategories: Subcategory[] = [];
+  let products: Product[] = [];
+  try {
+    const [catRes, subRes, prodRes] = await Promise.all([
+      api.get<Category[]>("/categories", { timeout: 8000 }),
+      api.get<Subcategory[]>("/subcategories", { timeout: 8000 }),
+      api.get<Product[]>("/products/filter?is_visivel=1", { timeout: 8000 }),
     ]);
+    categories = catRes.data ?? [];
+    subcategories = subRes.data ?? [];
+    products = prodRes.data ?? [];
+  } catch {
+    categories = [];
+    subcategories = [];
+    products = [];
+  }
 
   // Get the set of category and subcategory IDs that appear in the products
   const productSubcategoryIds = new Set(

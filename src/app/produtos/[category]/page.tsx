@@ -13,10 +13,15 @@ import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import FilterArea from "@/app/screens/produtos/components/filter-area";
 import { Suspense } from "react";
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
-  const { data: categories } = await api.get<Category[]>("/categories");
-  return categories.map(({ slug }) => ({ category: gerarUrlAmigavel(slug) }));
+  try {
+    const { data: categories } = await api.get<Category[]>("/categories", { timeout: 8000 });
+    return (categories ?? []).map(({ slug }) => ({ category: gerarUrlAmigavel(slug) }));
+  } catch {
+    return [];
+  }
 }
 
 export interface Subcategory {
@@ -61,7 +66,13 @@ export default async function CardProduto({
   }>;
 }) {
   const { category: categoryParam } = await params;
-  const { data: categories } = await api.get<Category[]>("/categories");
+  let categories: Category[] = [];
+  try {
+    const { data } = await api.get<Category[]>("/categories", { timeout: 8000 });
+    categories = data ?? [];
+  } catch {
+    categories = [];
+  }
   const category = categories.find((category: Category) => {
     return gerarUrlAmigavel(category.slug) === gerarUrlAmigavel(categoryParam);
   });
@@ -70,12 +81,19 @@ export default async function CardProduto({
     return <div>Houve um erro</div>;
   }
 
-  const { data: subcategoriesUnfiltered } = await api.get<Subcategory[]>(
-    `/subcategories`
-  );
-  const { data: products } = await api.get<Product[]>(
-    `/products/filter?is_visivel=1`
-  );
+  let subcategoriesUnfiltered: Subcategory[] = [];
+  let products: Product[] = [];
+  try {
+    const [subRes, prodRes] = await Promise.all([
+      api.get<Subcategory[]>(`/subcategories`, { timeout: 8000 }),
+      api.get<Product[]>(`/products/filter?is_visivel=1`, { timeout: 8000 }),
+    ]);
+    subcategoriesUnfiltered = subRes.data ?? [];
+    products = prodRes.data ?? [];
+  } catch {
+    subcategoriesUnfiltered = [];
+    products = [];
+  }
 
   const subcategories = subcategoriesUnfiltered.filter(
     (subcategory: Subcategory) =>

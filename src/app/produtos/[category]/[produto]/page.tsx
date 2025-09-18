@@ -17,6 +17,7 @@ import {
 import Link from "next/link";
 import { Category } from "../../page";
 import { Subcategory } from "../page";
+export const dynamic = 'force-dynamic';
 
 export interface Product {
   id: number;
@@ -66,13 +67,21 @@ export interface Product {
 }
 
 export async function generateStaticParams() {
-  const { data: categories } = await api.get<Category[]>("/categories");
-  const { data: subcategories } = await api.get<Subcategory[]>(
-    `/subcategories`
-  );
-  const { data: products } = await api.get<Product[]>(
-    `/products/filter?is_visivel=1`
-  );
+  let categories: Category[] = [];
+  let subcategories: Subcategory[] = [];
+  let products: Product[] = [];
+  try {
+    const [catRes, subRes, prodRes] = await Promise.all([
+      api.get<Category[]>("/categories", { timeout: 8000 }),
+      api.get<Subcategory[]>(`/subcategories`, { timeout: 8000 }),
+      api.get<Product[]>(`/products/filter?is_visivel=1`, { timeout: 8000 }),
+    ]);
+    categories = catRes.data ?? [];
+    subcategories = subRes.data ?? [];
+    products = prodRes.data ?? [];
+  } catch {
+    return [];
+  }
   const params = [];
   for (const category of categories) {
     for (const subcategory of subcategories) {
@@ -93,8 +102,12 @@ export async function generateStaticParams() {
 }
 
 async function getProduct(id: string) {
-  const { data: product } = await api.get<Product>(`/products/${id}`);
-  return product;
+  try {
+    const { data: product } = await api.get<Product>(`/products/${id}`, { timeout: 8000 });
+    return product ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export default async function ProductPage({
