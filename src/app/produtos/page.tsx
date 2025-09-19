@@ -73,7 +73,9 @@ export default async function Produtos() {
     .sort((a, b) => (a.id > b.id ? 1 : -1));
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-4">
         <Breadcrumb>
           <BreadcrumbList>
@@ -131,6 +133,8 @@ export default async function Produtos() {
         </div>
       </div>
       {/* Adicione o conteúdo dos produtos aqui */}
+        </div>
+      </div>
     </div>
   );
 }

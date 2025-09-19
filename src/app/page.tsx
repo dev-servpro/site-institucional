@@ -6,12 +6,14 @@ import ProdutosHomeWrapper from "./screens/home/components/produtos/produtos-wra
 
 export default function Home() {
   return (
-    <>
-      <HomeHeroIndex />
-      <HomeAmbientesIndex />
-      <ProdutosHomeWrapper />
-      <NosEscolherHome />
-      <TestimonialHomeIndex />
-    </>
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1">
+        <HomeHeroIndex />
+        <HomeAmbientesIndex />
+        <ProdutosHomeWrapper />
+        <NosEscolherHome />
+        <TestimonialHomeIndex />
+      </div>
+    </div>
   );
 }

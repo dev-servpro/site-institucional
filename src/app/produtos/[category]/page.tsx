@@ -113,8 +113,10 @@ export default async function CardProduto({
   );
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="py-2 2xl:py-4">
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-2 2xl:py-4">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -150,6 +152,8 @@ export default async function CardProduto({
             subcategories={subcategoriesWithProducts}
           />
         </Suspense>
+          </div>
+        </div>
       </div>
     </div>
   );

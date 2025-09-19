@@ -19,11 +19,11 @@ const POSTS: MockWpPost[] = [
     title: { rendered: "Lançamento: <strong>Câmeras IP PPA</strong>" },
     content: {
       rendered:
-        "<p>Lançamento de cameras IP PPA TESTE 1</p>"
+        "<p>Apresentamos nossa nova linha de <strong>Câmeras IP PPA</strong>, desenvolvidas com tecnologia de ponta para oferecer máxima segurança e qualidade de imagem. Essas câmeras são ideais para monitoramento residencial e comercial, proporcionando visão noturna de alta definição e conectividade inteligente.</p><p>Com resolução 4K e sistema de detecção de movimento avançado, nossas câmeras IP PPA garantem proteção 24 horas por dia, 7 dias por semana. A instalação é simples e o sistema pode ser acessado remotamente através do seu smartphone ou computador.</p>"
     },
     _embedded: {
       "wp:featuredmedia": [
-        { source_url: "https://redeservpro.com.br/wp-content/uploads/2024/01/PPA_website_1737726185646.webp" },
+        { source_url: "/images/CAMERA PPA.png" },
       ],
     },
   },
@@ -33,11 +33,11 @@ const POSTS: MockWpPost[] = [
     title: { rendered: "Como escolher <em>portas de enrolar</em> para seu negócio" },
     content: {
       rendered:
-        "<p>Como escolher portas de enrolar TESTE 2</p>"
+        "<p>As <strong>portas de enrolar</strong> são uma solução prática e eficiente para proteger seu estabelecimento comercial ou residencial. Nossa linha inclui modelos resistentes e duráveis, desenvolvidos para oferecer máxima segurança e facilidade de operação.</p><p>Disponíveis em diversos materiais e acabamentos, nossas portas de enrolar combinam estética moderna com funcionalidade superior. O sistema de enrolamento automático permite abertura e fechamento suave, enquanto a estrutura reforçada garante proteção contra intempéries e tentativas de invasão.</p>"
     },
     _embedded: {
       "wp:featuredmedia": [
-        { source_url: "https://redeservpro.com.br/wp-content/uploads/2024/01/Banner-site-2048x1024-portas-de-enrolar.webp" },
+        { source_url: "/images/PORTAO DE ENROLAR.png" },
       ],
     },
   },
@@ -47,11 +47,11 @@ const POSTS: MockWpPost[] = [
     title: { rendered: "Tutorial: configurando <u>sua central de alarme</u>" },
     content: {
       rendered:
-        "<p>Tutorial central de alarme TESTE 3</p>",
+        "<p>A <strong>central de alarme</strong> é o coração do seu sistema de segurança residencial ou comercial. Nossa linha de centrais oferece tecnologia avançada com interface intuitiva, permitindo controle total sobre todos os dispositivos conectados ao sistema.</p><p>Com recursos como monitoramento 24h, notificações via smartphone e integração com sensores de movimento, fumaça e abertura de portas, nossas centrais de alarme garantem proteção completa. A instalação é profissional e o suporte técnico está sempre disponível para garantir o funcionamento perfeito do seu sistema.</p>",
     },
     _embedded: {
       "wp:featuredmedia": [
-        { source_url: "https://redeservpro.com.br/wp-content/uploads/2024/01/Gp-05-Alarmes-Monitorados-PPA-JC-DSC-Qolsys_2_1721161642928.webp" },
+        { source_url: "/images/CENTRAL DE ALARME.png" },
       ],
     },
   },
