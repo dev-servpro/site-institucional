@@ -138,7 +138,8 @@ export default async function ProductPage({
   }
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1">
       {/* Header */}
       <section className="bg-white shadow">
         <div className="container mx-auto">
@@ -287,6 +288,7 @@ export default async function ProductPage({
           </motion.button>
         </motion.div>
       </main>
+      </div>
     </div>
   );
 }
