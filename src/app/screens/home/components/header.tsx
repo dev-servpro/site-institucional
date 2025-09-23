@@ -126,7 +126,7 @@ export default function Header({
                   <DropdownMenuItem asChild>
                     <Link
                       target="_blank"
-                      href="https://lp.redeservpro.com.br/"
+                      href="https://lpesquadrias.redeservpro.com.br/"
                       className="text-primary focus:text-primary font-medium"
                     >
                       Esquadrias
@@ -160,7 +160,7 @@ export default function Header({
                 target="_blank"
                 className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
               >
-                <span className="relative z-10">Contato</span>
+                <span className="relative z-10">Fale Conosco</span>
                 <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
               </Link>
             </li>

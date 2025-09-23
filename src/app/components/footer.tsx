@@ -61,7 +61,7 @@ export default function Footer() {
                   Planos
                 </a>
                 <a
-                  href="https://lp.redeservpro.com.br/"
+                  href="https://lpesquadrias.redeservpro.com.br/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"

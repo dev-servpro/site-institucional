@@ -1,0 +1,26 @@
+/* Smartzapp Chat - Mobile Optimizations */
+
+/* Garantir que o chat seja sempre visível */
+iframe[src*="servpro.sz.chat"] {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  iframe[src*="servpro.sz.chat"] {
+    bottom: 15px !important;
+    right: 15px !important;
+    max-width: calc(100vw - 30px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  iframe[src*="servpro.sz.chat"] {
+    bottom: 10px !important;
+    right: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
