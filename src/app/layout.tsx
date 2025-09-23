@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import "./chat-mobile.css";
 import { cn } from "@/lib/utils";
 import Footer from "./components/footer";
 import HeaderWrapper from "./screens/home/components/header-wrapper";
@@ -40,6 +41,29 @@ export default function RootLayout({
         }}
       />
       {/* End Google Tag Manager */}
+      
+      {/* Smartzapp Chat */}
+      <Script
+        id="smartzapp-chat"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(s, z, c, h, a, t) {
+              s.webchat = s.webchat || function() {
+                (s.webchat.q = s.webchat.q || []).push(arguments);
+              };
+              t = z.createElement(c),
+                a = z.getElementsByTagName(c)[0]; t.async = 1;
+              t.src = 'https://servpro.sz.chat/webchat/v2/webchat.js'; 
+              a.parentNode.insertBefore(t, a);
+              s.webchat('cid', '67b7994463ca1900189c082b');
+              s.webchat('host', h);
+            })(window, document, 'script', 'https://servpro.sz.chat');
+          `
+        }}
+      />
+      {/* End Smartzapp Chat */}
+      
       <body
         className={cn(
           `antialiased min-h-screen bg-[#EFEAE3] flex flex-col`,
@@ -55,6 +79,13 @@ export default function RootLayout({
         <HeaderWrapper />
         <main className="grow flex-1">{children}</main>
         <Footer />
+        
+        {/* WhatsApp Chat - Comentado para usar Smartzapp */}
+        {/* <WhatsAppChat 
+          phoneNumber="5585987654321" 
+          defaultMessage="Olá! Gostaria de mais informações sobre os produtos da Rede ServPro."
+          businessName="Rede ServPro"
+        /> */}
       </body>
     </html>
   );
