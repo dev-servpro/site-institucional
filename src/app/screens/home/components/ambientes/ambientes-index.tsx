@@ -54,6 +54,14 @@ export default function HomeAmbientesIndex() {
             </li>
           ))}
         </ul>
+        <div className="divbutton2">
+        <a href="https://wa.me/5585989193078?text=Ol%C3%A1%2C%20bom%20do%20Google%20%C3%A9%20queira%20saber%20mais%20sobre%20Porta%20de%20Enrrolar"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        <button className="button2">Fale conosco</button>
+        </a>
+        </div>
       </div>
     </section>
   );

@@ -78,8 +78,17 @@ export default function RootLayout({
         {/* End Google Tag Manager (noscript) */}
         <HeaderWrapper />
         <main className="grow flex-1">{children}</main>
-        <Footer />
         
+        <div className="divbutton">
+        <a href="https://wa.me/5585989193078?text=Ol%C3%A1%2C%20bom%20do%20Google%20%C3%A9%20queira%20saber%20mais%20sobre%20Porta%20de%20Enrrolar"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        <button className="button1">Fale conosco</button>
+        </a>
+</div>
+
+        <Footer />
         {/* WhatsApp Chat - Comentado para usar Smartzapp */}
         {/* <WhatsAppChat 
           phoneNumber="5585987654321" 
