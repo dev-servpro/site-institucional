@@ -55,7 +55,7 @@ export default function HomeAmbientesIndex() {
           ))}
         </ul>
         <div className="divbutton2">
-        <a href="https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20%C3%A9%20queira%20saber%20mais%20sobre%20Porta%20de%20Enrolar"
+        <a href="https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20de%20enrolar!"
           target="_blank"
           rel="noopener noreferrer"
         >
