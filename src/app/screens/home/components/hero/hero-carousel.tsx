@@ -11,19 +11,27 @@ import {
 } from "@/app/components/ui/carousel";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Banner1 from "../../../../../../public/images/PPA_banner-lancamento_radar_1734609816813.webp";
-import Banner2 from "../../../../../../public/images/PPA_banner-lancamento_cameras-ip_1736858547247.webp";
-import Banner3 from "../../../../../../public/images/PPA_banner-lancamento_mola-aerea_1738176783484.webp";
-import Banner4 from "../../../../../../public/images/PPA_banner-lancamento_dz-stark-home_1732112536169.webp";
 import Link from "next/link";
 import { Categories, categoriesLabelMap } from "@/data/produtos";
 
-// Select main categories to feature with their background images
+// Caminhos relativos da pasta /public/images
 const featuredCategories = [
-  { category: Categories.auto, bgImage: Banner4 },
-  { category: Categories.cftv, bgImage: Banner2 },
-  { category: Categories.porta_sensor, bgImage: Banner3 },
-  { category: Categories.controle_acesso, bgImage: Banner1 },
+  {
+    category: Categories.auto,
+    bgImage: "/images/NOVO-BANNER-MOTOR.png",
+  },
+  {
+    category: Categories.cftv,
+    bgImage: "/images/NOVO-BANNER-CFTV.png",
+  },
+  {
+    category: Categories.porta_sensor,
+    bgImage: "/images/NOVO-BANNER-SENSOR-PORTA.png",
+  },
+  {
+    category: Categories.controle_acesso,
+    bgImage: "/images/NOVO-BANNER-CONTROLE-DE-ACESSO.png",
+  },
 ];
 
 export default function HeroCarousel() {
@@ -31,13 +39,11 @@ export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     const autoplayInterval = setInterval(() => {
       api.scrollNext();
-    }, 16000); // Change slide every 16 seconds
+    }, 16000); // 16 segundos
 
     api.on("select", () => {
       setCurrentSlide(api.selectedScrollSnap());
@@ -48,7 +54,7 @@ export default function HeroCarousel() {
 
   return (
     <div className="relative">
-      {/* Navigation Buttons */}
+      {/* Botões de navegação */}
       <Button
         variant="ghost"
         size="icon"
@@ -86,24 +92,25 @@ export default function HeroCarousel() {
                 key={category}
                 className="basis-full relative h-[min(600px,calc(100vh-6rem))]"
               >
-                {/* Background Image with Overlay */}
+                {/* Imagem de fundo com overlay */}
                 <div className="absolute inset-0">
                   <Image
                     fill
                     priority
                     quality={100}
                     sizes="100vw"
-                    alt=""
+                    alt={`Banner da categoria ${categoryData.label}`}
                     className="w-full object-center object-cover"
                     src={bgImage}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 mix-blend-multiply" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/10 mix-blend-normal" />
+
                 </div>
 
-                {/* Content */}
+                {/* Conteúdo */}
                 <div className="relative h-full container mx-auto flex items-center justify-center">
                   <div className="flex flex-col md:flex-row items-center gap-8 max-w-5xl text-center md:text-left">
-                    {/* Text Content */}
+                    {/* Texto */}
                     <div className="flex-1">
                       <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -136,14 +143,12 @@ export default function HeroCarousel() {
                           className="uppercase rounded-sm !h-12 mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                           asChild
                         >
-                          <Link href={categoryData.href}>
-                            Ver produtos
-                          </Link>
+                          <Link href={categoryData.href}>Ver produtos</Link>
                         </Button>
                       </motion.div>
                     </div>
 
-                    {/* Category Image */}
+                    {/* Imagem da categoria */}
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
@@ -151,14 +156,7 @@ export default function HeroCarousel() {
                       transition={{ duration: 0.5, delay: 0.3 }}
                       className="hidden md:block w-80 h-80 relative"
                     >
-                      <Image
-                        src={categoryData.image}
-                        alt={categoryData.label}
-                        className="object-contain"
-                        fill
-                        sizes="320px"
-                        quality={100}
-                      />
+
                     </motion.div>
                   </div>
                 </div>
@@ -168,7 +166,7 @@ export default function HeroCarousel() {
         </CarouselContent>
       </Carousel>
 
-      {/* Slide Indicators */}
+      {/* Indicadores de slide */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex space-x-2">
         {featuredCategories.map((_, index) => (
           <button
@@ -179,7 +177,7 @@ export default function HeroCarousel() {
                 ? "bg-white w-6"
                 : "bg-white/50 hover:bg-white/75"
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`Ir para o slide ${index + 1}`}
           />
         ))}
       </div>

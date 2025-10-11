@@ -5,14 +5,14 @@ import { Carousel, CarouselApi, CarouselContent } from "../../../components/ui/c
 import HeroCarouselPorta from "./servtem-carousel-porta";
 import { Button } from "../../../components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import HeroCarouselPortao from "./servtem-carousel-portao";
+
 import HeroCarouselCFTV from "./servtem-carousel-cftv";
 import HeroCarouselImaxx from "./servtem-carousel-imaxx";
 import HeroCarouselAuto from "./servtem-carousel-auto";
 
 const carouselItems = [
   { id: 1, component: HeroCarouselPorta },
-  { id: 2, component: HeroCarouselPortao },
+
   { id: 4, component: HeroCarouselCFTV },
   { id: 5, component: HeroCarouselImaxx },
   { id: 6, component: HeroCarouselAuto },
