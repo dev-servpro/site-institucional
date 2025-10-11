@@ -101,13 +101,13 @@ export default function NosEscolherHome() {
           <div className="order-1 lg:order-2">
             <div className="mb-8 md:mb-12">
               <p className="text-sm md:text-base uppercase font-medium tracking-wider text-amber-700 mb-2">
-                Por que nos escolher
+                
               </p>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium">
-                Acreditamos que <br className="hidden sm:block" />
+                Nosso trabalho é <br className="hidden sm:block" />
                 <span className="text-amber-700 uppercase font-bold">
-                  só o trabalho constrói
+                  Buscar entender, para atender
                 </span>
               </h2>
 
