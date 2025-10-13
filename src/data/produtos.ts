@@ -82,7 +82,7 @@ export const categoriesLabelMap: Map<
   [
     Categories.porta_sensor,
     {
-      label: "Porta com sensor automática",
+      label: "Porta com sensor automático",
       image: PortaSensor,
       href: "produtos/seguranca-de-acesso?subcategory=porta-social-automatica",
     },
