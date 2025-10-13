@@ -66,7 +66,7 @@ export const categoriesLabelMap: Map<
   [
     Categories.auto,
     {
-      label: "Motor de portão",
+      label: "Porta de Enrolar",
       image: MotorDePortao,
       href: "produtos/seguranca-de-acesso?subcategory=automaticos-deslizantes",
     },
@@ -113,7 +113,11 @@ export const categoriesLabelMap: Map<
   ],
   [
     Categories.cftv,
-    { label: "Sistema de CFTV", image: CFTV, href: "produtos/seguranca-de-acesso?subcategory=controle-de-acesso" },
+    {
+      label: "Sistema de CFTV",
+      image: CFTV,
+      href: "produtos/seguranca-de-acesso?subcategory=controle-de-acesso",
+    },
   ],
   [
     Categories.interfone_cond,
