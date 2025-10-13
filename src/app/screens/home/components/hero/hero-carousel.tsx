@@ -18,7 +18,7 @@ import { Categories, categoriesLabelMap } from "@/data/produtos";
 const featuredCategories = [
   {
     category: Categories.auto,
-    bgImage: "/images/NOVO-BANNER-MOTOR.png",
+    bgImage: "/images/NOVO-BANNER-PORTAO.png",
   },
   {
     category: Categories.cftv,
@@ -104,7 +104,6 @@ export default function HeroCarousel() {
                     src={bgImage}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/10 mix-blend-normal" />
-
                 </div>
 
                 {/* Conteúdo */}
@@ -143,7 +142,9 @@ export default function HeroCarousel() {
                           className="uppercase rounded-sm !h-12 mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                           asChild
                         >
-                          <Link href={categoryData.href}>Ver produtos</Link>
+                          <Link href={categoryData.href}>
+                            Solicite seu orçamento
+                          </Link>
                         </Button>
                       </motion.div>
                     </div>
@@ -155,9 +156,7 @@ export default function HeroCarousel() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.3 }}
                       className="hidden md:block w-80 h-80 relative"
-                    >
-
-                    </motion.div>
+                    ></motion.div>
                   </div>
                 </div>
               </CarouselItem>

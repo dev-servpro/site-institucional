@@ -165,14 +165,14 @@ export default function Header({
               </Link>
             </li>
             <li className="group h-full">
-  <Link
+              {/* <Link
     href="/cliente"
     className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
   >
     <span className="relative z-10">Área do Cliente</span>
     <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
-  </Link>
-</li>
+    </Link> */}
+            </li>
           </ul>
         </div>
 
@@ -213,11 +213,18 @@ export default function Header({
                   },
                 }}
               >
-                
                 <motion.li
                   variants={{
-                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
-                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                    open: {
+                      y: 0,
+                      opacity: 1,
+                      transition: { y: { stiffness: 1000, velocity: -100 } },
+                    },
+                    closed: {
+                      y: 50,
+                      opacity: 0,
+                      transition: { y: { stiffness: 1000 } },
+                    },
                   }}
                   className="group"
                 >
@@ -232,8 +239,16 @@ export default function Header({
                 </motion.li>
                 <motion.li
                   variants={{
-                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
-                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                    open: {
+                      y: 0,
+                      opacity: 1,
+                      transition: { y: { stiffness: 1000, velocity: -100 } },
+                    },
+                    closed: {
+                      y: 50,
+                      opacity: 0,
+                      transition: { y: { stiffness: 1000 } },
+                    },
                   }}
                   className="group"
                 >
@@ -246,8 +261,16 @@ export default function Header({
                 </motion.li>
                 <motion.li
                   variants={{
-                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
-                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                    open: {
+                      y: 0,
+                      opacity: 1,
+                      transition: { y: { stiffness: 1000, velocity: -100 } },
+                    },
+                    closed: {
+                      y: 50,
+                      opacity: 0,
+                      transition: { y: { stiffness: 1000 } },
+                    },
                   }}
                   className="group"
                 >
@@ -262,8 +285,16 @@ export default function Header({
                 </motion.li>
                 <motion.li
                   variants={{
-                    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
-                    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
+                    open: {
+                      y: 0,
+                      opacity: 1,
+                      transition: { y: { stiffness: 1000, velocity: -100 } },
+                    },
+                    closed: {
+                      y: 50,
+                      opacity: 0,
+                      transition: { y: { stiffness: 1000 } },
+                    },
                   }}
                   className="group"
                 >
@@ -279,21 +310,29 @@ export default function Header({
                   </a>
                 </motion.li>
                 <motion.li
-  variants={{
-    open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
-    closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
-  }}
-  className="group"
->
-  <Link
-    href="/cliente"
-    className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
-    onClick={() => setIsMenuOpen(false)}
-  >
-    <span className="relative z-10">Área do Cliente</span>
-    <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
-  </Link>
-</motion.li>
+                  variants={{
+                    open: {
+                      y: 0,
+                      opacity: 1,
+                      transition: { y: { stiffness: 1000, velocity: -100 } },
+                    },
+                    closed: {
+                      y: 50,
+                      opacity: 0,
+                      transition: { y: { stiffness: 1000 } },
+                    },
+                  }}
+                  className="group"
+                >
+                  <Link
+                    href="/cliente"
+                    className="relative block px-4 py-2 text-[14px] font-medium text-primary/90 transition-colors duration-200 group-hover:text-primary"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="relative z-10">Área do Cliente</span>
+                    <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
+                  </Link>
+                </motion.li>
               </motion.ul>
             </motion.div>
           )}
