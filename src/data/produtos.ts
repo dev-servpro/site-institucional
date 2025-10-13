@@ -68,7 +68,7 @@ export const categoriesLabelMap: Map<
     {
       label: "Porta de Enrolar",
       image: MotorDePortao,
-      href: "produtos/seguranca-de-acesso?subcategory=automaticos-deslizantes",
+      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20de%20enrolar!",
     },
   ],
   [
@@ -84,7 +84,7 @@ export const categoriesLabelMap: Map<
     {
       label: "Porta com sensor automático",
       image: PortaSensor,
-      href: "produtos/seguranca-de-acesso?subcategory=porta-social-automatica",
+      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20com%20Sensor%20Autom%C3%A1tico!%0A",
     },
   ],
   [
@@ -108,7 +108,7 @@ export const categoriesLabelMap: Map<
     {
       label: "Controle de acesso",
       image: ControleAcesso,
-      href: "produtos/seguranca-de-acesso?subcategory=controle-de-acesso",
+      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Controle%20de%20Acesso!%0A,",
     },
   ],
   [
@@ -116,7 +116,7 @@ export const categoriesLabelMap: Map<
     {
       label: "Sistema de CFTV",
       image: CFTV,
-      href: "produtos/seguranca-de-acesso?subcategory=controle-de-acesso",
+      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Sistemas%20de%20Seguran%C3%A7a!%0A,",
     },
   ],
   [
