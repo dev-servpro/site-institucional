@@ -14,6 +14,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Categories, categoriesLabelMap } from "@/data/produtos";
 
+// WhatsApp links for each category
+const whatsappLinks: Partial<Record<Categories, string>> = {
+  [Categories.cftv]:
+    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Sistemas%20de%20Seguran%C3%A7a!%0A",
+  [Categories.porta_sensor]:
+    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20com%20Sensor%20Autom%C3%A1tico!%0A",
+  [Categories.controle_acesso]:
+    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Controle%20de%20Acesso!%0A",
+  [Categories.auto]:
+    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20de%20enrolar!%0A",
+};
+
 // Caminhos relativos da pasta /public/images
 const featuredCategories = [
   {
@@ -142,7 +154,11 @@ export default function HeroCarousel() {
                           className="uppercase rounded-sm !h-12 mt-6 py-3 px-12 text-base leading-[1.25rem] text-white bg-primary font-bold hover:bg-[#ff9831] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                           asChild
                         >
-                          <Link href={categoryData.href}>
+                          <Link
+                            href={whatsappLinks[category] || categoryData.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             Solicite seu orçamento
                           </Link>
                         </Button>
