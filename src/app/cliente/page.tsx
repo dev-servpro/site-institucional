@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { pedidosFake, Pedido } from './pedidosFake';
+import { useEffect, useState } from "react";
+import { pedidosFake, type Pedido } from "./pedidosFake";
 
 export default function AreaCliente() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -21,18 +21,20 @@ export default function AreaCliente() {
           className="border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition"
         >
           <h2 className="text-xl font-semibold mb-2">Pedido: {pedido.id}</h2>
-          <p><strong>Data:</strong> {pedido.data}</p>
-          <p><strong>Status:</strong> {pedido.status}</p>
-          <p><strong>Produtos:</strong> {pedido.produtos.join(', ')}</p>
-          <p><strong>Código de Rastreio:</strong> {pedido.rastreio}</p>
+          <p>
+            <strong>Data:</strong> {pedido.data}
+          </p>
+          <p>
+            <strong>Status:</strong> {pedido.status}
+          </p>
+          <p>
+            <strong>Produtos:</strong> {pedido.produtos.join(", ")}
+          </p>
+          <p>
+            <strong>Código de Rastreio:</strong> {pedido.rastreio}
+          </p>
         </div>
       ))}
     </section>
   );
 }
-
-
-
-
-  
-  
