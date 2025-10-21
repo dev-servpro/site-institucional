@@ -110,7 +110,8 @@ export default function FooterIndex() {
             src={Logo}
             alt=""
           />
-
+          Sistema de CFTV Descubra nossa linha completa de soluções em sistema
+          de cftv VER PRODUTOS
           <p className="text-[0.5rem] max-w-[80%] font-normal text-muted-foreground text-center mt-8">
             Redes ServPro {new Date().getFullYear()}. Todos os direitos
             reservados
