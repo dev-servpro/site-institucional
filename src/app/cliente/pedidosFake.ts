@@ -1,4 +1,4 @@
-export type Pedido = {
+/*export type Pedido = {
   id: string;
   data: string;
   status: string;
@@ -12,7 +12,7 @@ export const pedidosFake: Pedido[] = [
     data: '2025-10-01',
     status: 'Em transporte',
     produtos: ['Camiseta Preta', 'Boné Azul'],
-    rastreio: 'BR1234567890',
+    rastreio: 'BR1234567890', 
   },
   {
     id: 'PED124',
@@ -21,9 +21,4 @@ export const pedidosFake: Pedido[] = [
     produtos: ['Tênis Esportivo'],
     rastreio: 'BR9876543210',
   },
-];
-
-
-
-
-  
+];*/
