@@ -164,7 +164,9 @@ export default function Header({
                 <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
               </Link>
             </li>
-            {/* <Link<li className="group h-full">
+            {/* 
+            
+            <Link<li className="group h-full">
               
     href="/cliente"
     className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
@@ -172,7 +174,19 @@ export default function Header({
     <span className="relative z-10">Área do Cliente</span>
     <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
     </Link> 
-            </li>*/}
+            </li>
+            
+            */}
+
+            <li className="group h-full">
+              <Link
+                href="/trabalhe-conosco"
+                className="relative h-full px-4 flex items-center text-primary/90 font-medium text-[14px] transition-colors duration-200 group-hover:text-primary"
+              >
+                <span className="relative z-10">Trabalhe Conosco</span>
+                <span className="absolute inset-0 w-full h-full bg-primary/0 transition-colors duration-200 group-hover:bg-primary/5" />
+              </Link>
+            </li>
           </ul>
         </div>
 
