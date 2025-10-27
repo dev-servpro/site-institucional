@@ -24,14 +24,14 @@ export async function POST(request: NextRequest) {
       port: 465, // 465 = SSL, 587 = TLS
       secure: true, // true se usar 465, false se 587
       auth: {
-        user: "rh.adm@redeservpro.com.br",
-        pass: "Servpro@182", // ideal usar .env.local
+        user: "trabalheconosco@redeservpro.com.br",
+        pass: "sejaS3rvpr0@281", // ideal usar .env.local
       },
     });
 
     // 🔹 Envia o email com o currículo anexado
     await transporter.sendMail({
-      from: "rh.adm@redeservpro.com.br",
+      from: "trabalheconosco@redeservpro.com.br",
       to: "rh.adm@redeservpro.com.br",
       subject: "REDE SERVPRO - VENDEDOR EXTERNO",
       text: `Inscrição realizada com sucesso.`,
