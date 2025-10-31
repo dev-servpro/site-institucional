@@ -66,9 +66,9 @@ export const categoriesLabelMap: Map<
   [
     Categories.auto,
     {
-      label: "Porta de Enrolar",
+      label: "Portão basculante",
       image: MotorDePortao,
-      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20de%20enrolar!",
+      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Port%C3%B5es%20Basculantes!",
     },
   ],
   [
@@ -82,9 +82,9 @@ export const categoriesLabelMap: Map<
   [
     Categories.porta_sensor,
     {
-      label: "Porta com sensor automático",
+      label: "Motor deslizante",
       image: PortaSensor,
-      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20com%20Sensor%20Autom%C3%A1tico!%0A",
+      href: "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20o%20Motor%20deslizante!",
     },
   ],
   [
