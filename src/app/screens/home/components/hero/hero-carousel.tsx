@@ -19,18 +19,18 @@ const whatsappLinks: Partial<Record<Categories, string>> = {
   [Categories.cftv]:
     "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Sistemas%20de%20Seguran%C3%A7a!%0A",
   [Categories.porta_sensor]:
-    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20com%20Sensor%20Autom%C3%A1tico!%0A",
+    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20o%20Motor%20deslizante!",
   [Categories.controle_acesso]:
     "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Controle%20de%20Acesso!%0A",
   [Categories.auto]:
-    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20de%20enrolar!%0A",
+    "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Port%C3%B5es%20Basculantes!",
 };
 
 // Caminhos relativos da pasta /public/images
 const featuredCategories = [
   {
     category: Categories.auto,
-    bgImage: "/images/NOVO-BANNER-PORTAO.png",
+    bgImage: "/images/NOVO-BANNER-BASCULANTE.png",
   },
   {
     category: Categories.cftv,
@@ -38,7 +38,7 @@ const featuredCategories = [
   },
   {
     category: Categories.porta_sensor,
-    bgImage: "/images/NOVO-BANNER-SENSOR-PORTA.png",
+    bgImage: "/images/NOVO-BANNER-MOTOR.png",
   },
   {
     category: Categories.controle_acesso,
