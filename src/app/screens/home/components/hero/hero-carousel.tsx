@@ -88,7 +88,7 @@ const featuredBanners: FeaturedBanner[] = [
   },
   {
     id: "custom-4",
-    bgImage: "/images/NOVO-BANNER-PORTAOACM.png",
+    bgImage: "/images/PORTAO-ACM.png",
     title: "Portão ACM ",
     description: "Confira nossa linha de portões ACM.",
     ctaHref:
