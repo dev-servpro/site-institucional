@@ -65,7 +65,7 @@ const featuredBanners: FeaturedBanner[] = [
     title: "Sensor de porta automática",
     description: "Descubra nossa linha completa de sensores.",
     ctaHref:
-      "https://exemplo.com/banner-https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20queria%20saber%20mais%20sobre%20sensores.",
+      "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20queria%20saber%20mais%20sobre%20sensores.",
     ctaLabel: "Solicite seu orçamento",
   },
   {
