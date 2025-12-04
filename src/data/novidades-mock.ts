@@ -15,42 +15,42 @@ export type MockWpPost = {
 const POSTS: MockWpPost[] = [
   {
     id: 1,
-    slug: "lancamento-cameras-ip-ppa",
-    title: { rendered: "Lançamento: <strong>Câmeras IP PPA</strong>" },
+    slug: "lancamento-eletroima",
+    title: { rendered: "Lançamento: <strong>Eletroimã</strong>" },
     content: {
       rendered:
-        "<p>Apresentamos nossa nova linha de <strong>Câmeras IP PPA</strong>, desenvolvidas com tecnologia de ponta para oferecer máxima segurança e qualidade de imagem. Essas câmeras são ideais para monitoramento residencial e comercial, proporcionando visão noturna de alta definição e conectividade inteligente.</p><p>Com resolução 4K e sistema de detecção de movimento avançado, nossas câmeras IP PPA garantem proteção 24 horas por dia, 7 dias por semana. A instalação é simples e o sistema pode ser acessado remotamente através do seu smartphone ou computador.</p>",
+        "<p>Apresentamos nosso Eletroímã Profissional, desenvolvido para entregar força magnética robusta e desempenho contínuo. Ideal para aplicações industriais, automação e sistemas de retenção, ele oferece potência, estabilidade e alta confiabilidade em qualquer operação. Com acionamento elétrico rápido e construção resistente, o eletroímã garante resposta imediata e longa durabilidade. Sua instalação é simples e a integração com sensores, controladores e outros equipamentos é fácil, proporcionando mais eficiência e segurança para o seu projeto.</p>",
     },
     _embedded: {
-      "wp:featuredmedia": [{ source_url: "/images/CAMERA PPA.png" }],
+      "wp:featuredmedia": [{ source_url: "/images/eletroimaZ.png" }],
     },
   },
   {
     id: 2,
-    slug: "como-escolher-portas-de-enrolar",
+    slug: "lancamento-mola-aerea",
     title: {
-      rendered: "Não deixe de conferir nossas <em>portas de enrolar</em> ",
+      rendered: "Não deixe de conferir nossas <strong>Molas Aéreas </strong>",
     },
     content: {
       rendered:
-        "<p>As <strong>portas de enrolar</strong> são uma solução prática e eficiente para proteger seu estabelecimento comercial ou residencial. Nossa linha inclui modelos resistentes e duráveis, desenvolvidos para oferecer máxima segurança e facilidade de operação.</p><p>Disponíveis em diversos materiais e acabamentos, nossas portas de enrolar combinam estética moderna com funcionalidade superior. O sistema de enrolamento automático permite abertura e fechamento suave, enquanto a estrutura reforçada garante proteção contra intempéries e tentativas de invasão.</p>",
+        "<p>Apresentamos nossa linha de Molas Aéreas desenvolvidas para garantir fechamento automático suave, seguro e silencioso em qualquer porta. Fabricadas com materiais de alta resistência, oferecem ajuste de velocidade, longa durabilidade e fácil instalação, sendo ideais para ambientes residenciais e comerciais.</p>",
     },
     _embedded: {
-      "wp:featuredmedia": [{ source_url: "/images/PORTAO DE ENROLAR.png" }],
+      "wp:featuredmedia": [{ source_url: "/images/molaAereaZ.png" }],
     },
   },
   {
     id: 3,
-    slug: "tutorial-central-de-alarme",
+    slug: "porteiro-eletronico",
     title: {
-      rendered: "<p>Confira nossa central de Alarme</p>",
+      rendered: "<p>Confira nosso Porteiro Eletrônico</p>",
     },
     content: {
       rendered:
-        "<p>A <strong>central de alarme</strong> é o coração do seu sistema de segurança residencial ou comercial. Nossa linha de centrais oferece tecnologia avançada com interface intuitiva, permitindo controle total sobre todos os dispositivos conectados ao sistema.</p><p>Com recursos como monitoramento 24h, notificações via smartphone e integração com sensores de movimento, fumaça e abertura de portas, nossas centrais de alarme garantem proteção completa. A instalação é profissional e o suporte técnico está sempre disponível para garantir o funcionamento perfeito do seu sistema.</p>",
+        "<p>Trazendo mais segurança e praticidade ao seu dia a dia, nosso Porteiro Eletrônico oferece comunicação nítida, controle de acesso eficiente e instalação descomplicada. Com áudio de alta qualidade e estrutura resistente, ele permite identificar visitantes e liberar a entrada com total comodidade, sendo ideal para residências e estabelecimentos comerciais.</p>",
     },
     _embedded: {
-      "wp:featuredmedia": [{ source_url: "/images/CENTRAL DE ALARME.png" }],
+      "wp:featuredmedia": [{ source_url: "/images/porteiroEletronicoZ.png" }],
     },
   },
 ];
@@ -59,10 +59,22 @@ export async function getPostsMock(): Promise<MockWpPost[]> {
   return POSTS;
 }
 
+// Função para normalizar slugs (remove acentos, converte para minúsculo)
+function normalizeSlug(slug: string): string {
+  return slug
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // Remove acentos
+    .trim();
+}
+
 export async function getPostBySlugMock(
   slug: string
 ): Promise<MockWpPost | undefined> {
-  return POSTS.find((p) => p.slug === slug);
+  // Normaliza o slug recebido para fazer busca case-insensitive e sem acentos
+  // Isso garante compatibilidade mesmo se alguém acessar com caracteres especiais
+  const normalizedSlug = normalizeSlug(slug);
+  return POSTS.find((p) => normalizeSlug(p.slug) === normalizedSlug);
 }
 
 export async function getStaticParamsFromMock(): Promise<{ slug: string }[]> {
