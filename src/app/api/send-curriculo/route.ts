@@ -11,7 +11,7 @@ function createTransporter(port: 465 | 587) {
 
   if (!smtpUser || !smtpPass) {
     throw new Error(
-      "Variáveis de ambiente SMTP_USER e SMTP_PASS não configuradas. Verifique o arquivo .env.local"
+      "Variáveis de ambiente não configuradas. Verifique o arquivo .env"
     );
   }
 
@@ -47,19 +47,19 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(bytes);
 
     // 🔹 Conectar SOMENTE na porta 587
-    console.log("Tentando conectar na porta 587 (TLS/STARTTLS)...");
+    console.log("Tentando conectar na porta SMTP...");
 
     const transporter = createTransporter(587);
 
     try {
       await transporter.verify();
-      console.log("✅ Conexão SMTP verificada com sucesso na porta 587");
+      console.log("✅ Conexão SMTP verificada com sucesso!");
     } catch (err) {
-      console.error("❌ Erro ao conectar na porta 587:", err);
+      console.error("❌ Erro ao conectar na porta SMTP:", err);
 
       return NextResponse.json(
         {
-          error: "Erro de conexão SMTP usando a porta 587.",
+          error: "Erro de conexão SMTP.",
           details: err instanceof Error ? err.message : "Erro desconhecido",
         },
         { status: 500 }
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
 
     if (!emailFrom || !emailTo) {
       throw new Error(
-        "Variáveis de ambiente EMAIL_FROM e EMAIL_TO não configuradas. Verifique o arquivo .env.local"
+        "Variáveis de ambiente EMAIL_FROM e EMAIL_TO não configuradas. Verifique o arquivo .env"
       );
     }
 
