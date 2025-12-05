@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 // Função auxiliar para criar transporter com diferentes configurações
-function createTransporter(port: 465 | 587) {
+function createTransporter(port: 587 | 465) {
   // Validação das variáveis de ambiente
   const smtpHost = process.env.SMTP_HOST || "smtp.titan.email";
   const smtpUser = process.env.SMTP_USER;
@@ -18,7 +18,7 @@ function createTransporter(port: 465 | 587) {
   return nodemailer.createTransport({
     host: smtpHost,
     port: port,
-    secure: port === 465, // true para 465 (SSL), false para 587 (TLS)
+    secure: port === 587, // true para 587 (SSL), false para 465 (TLS)
     auth: {
       user: smtpUser,
       pass: smtpPass,
@@ -47,29 +47,29 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(bytes);
 
     // 🔹 Tenta conectar com porta 465 primeiro, depois 587 se falhar
-    let transporter = createTransporter(465);
+    let transporter = createTransporter(587);
     let connectionVerified = false;
     let lastError: any = null;
 
-    console.log("Tentando conectar na porta 465 (SSL)...");
+    console.log("Tentando conectar na porta 587 (SSL)...");
     try {
       await transporter.verify();
-      console.log("✅ Conexão SMTP verificada com sucesso na porta 465");
+      console.log("✅ Conexão SMTP verificada com sucesso na porta 587");
       connectionVerified = true;
     } catch (verifyError) {
-      console.error("❌ Erro na porta 465:", verifyError);
+      console.error("❌ Erro na porta 587:", verifyError);
       lastError = verifyError;
 
-      // Tenta porta 587 (TLS)
-      console.log("Tentando conectar na porta 587 (TLS)...");
-      transporter = createTransporter(587);
+      // Tenta porta 465 (TLS)
+      console.log("Tentando conectar na porta 465 (TLS)...");
+      transporter = createTransporter(465);
       try {
         await transporter.verify();
         console.log("✅ Conexão SMTP verificada com sucesso na porta 587");
         connectionVerified = true;
-      } catch (verifyError587) {
-        console.error("❌ Erro na porta 587:", verifyError587);
-        lastError = verifyError587;
+      } catch (verifyError465) {
+        console.error("❌ Erro na porta 587:", verifyError465);
+        lastError = verifyError465;
       }
     }
 
