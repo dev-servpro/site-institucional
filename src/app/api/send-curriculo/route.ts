@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 // Função auxiliar para criar transporter com diferentes configurações
-function createTransporter(port: 587 | 465) {
+function createTransporter(port: 465 | 587) {
   // Validação das variáveis de ambiente
   const smtpHost = process.env.SMTP_HOST || "smtp.titan.email";
   const smtpUser = process.env.SMTP_USER;
@@ -17,8 +17,8 @@ function createTransporter(port: 587 | 465) {
 
   return nodemailer.createTransport({
     host: smtpHost,
-    port: port,
-    secure: port === 587, // true para 587 (SSL), false para 465 (TLS)
+    port,
+    secure: port === 465, // SSL somente na 465 — 587 usa STARTTLS
     auth: {
       user: smtpUser,
       pass: smtpPass,
@@ -46,63 +46,30 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // 🔹 Tenta conectar com porta 465 primeiro, depois 587 se falhar
-    let transporter = createTransporter(587);
-    let connectionVerified = false;
-    let lastError: any = null;
+    // 🔹 Conectar SOMENTE na porta 587
+    console.log("Tentando conectar na porta 587 (TLS/STARTTLS)...");
 
-    console.log("Tentando conectar na porta 587 (SSL)...");
+    const transporter = createTransporter(587);
+
     try {
       await transporter.verify();
       console.log("✅ Conexão SMTP verificada com sucesso na porta 587");
-      connectionVerified = true;
-    } catch (verifyError) {
-      console.error("❌ Erro na porta 587:", verifyError);
-      lastError = verifyError;
-
-      // Tenta porta 465 (TLS)
-      console.log("Tentando conectar na porta 465 (TLS)...");
-      transporter = createTransporter(465);
-      try {
-        await transporter.verify();
-        console.log("✅ Conexão SMTP verificada com sucesso na porta 587");
-        connectionVerified = true;
-      } catch (verifyError465) {
-        console.error("❌ Erro na porta 587:", verifyError465);
-        lastError = verifyError465;
-      }
-    }
-
-    if (!connectionVerified) {
-      console.error("❌ Falha na conexão SMTP em ambas as portas");
-
-      // Log detalhado do erro
-      if (lastError instanceof Error) {
-        console.error("Mensagem de erro:", lastError.message);
-        console.error("Código de erro:", (lastError as any).code);
-        console.error("Comando SMTP:", (lastError as any).command);
-      }
+    } catch (err) {
+      console.error("❌ Erro ao conectar na porta 587:", err);
 
       return NextResponse.json(
         {
-          error:
-            "Erro na conexão com o servidor de email. Verifique as credenciais.",
-          details:
-            lastError instanceof Error
-              ? lastError.message
-              : "Erro desconhecido",
-          code: (lastError as any)?.code || "UNKNOWN",
+          error: "Erro de conexão SMTP usando a porta 587.",
+          details: err instanceof Error ? err.message : "Erro desconhecido",
         },
         { status: 500 }
       );
     }
 
     // 🔹 Envia o email com o currículo anexado
-    // IMPORTANTE: O email 'from' deve ser o mesmo do email autenticado ou um alias válido
     console.log("Enviando email...");
     console.log("Arquivo:", file.name, "Tamanho:", buffer.length, "bytes");
 
-    // Obtém emails das variáveis de ambiente ou usa valores padrão
     const emailFrom = process.env.EMAIL_FROM || process.env.SMTP_USER;
     const emailTo = process.env.EMAIL_TO || process.env.SMTP_USER;
     const emailReplyTo = process.env.EMAIL_REPLY_TO || emailFrom;
@@ -145,23 +112,20 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("❌ Erro ao enviar currículo:", error);
 
-    // Retorna mensagem de erro mais detalhada para debug
     const errorMessage =
       error instanceof Error ? error.message : "Erro desconhecido";
-    const errorStack = error instanceof Error ? error.stack : undefined;
     const errorCode = (error as any)?.code;
-    const errorResponse = (error as any)?.response;
     const errorResponseCode = (error as any)?.responseCode;
+    const errorResponse = (error as any)?.response;
 
     console.error("Detalhes completos do erro:", {
       message: errorMessage,
       code: errorCode,
       responseCode: errorResponseCode,
       response: errorResponse,
-      stack: errorStack,
+      stack: error instanceof Error ? error.stack : undefined,
     });
 
-    // Mensagem de erro mais específica baseada no tipo de erro
     let userMessage = "Erro ao enviar o currículo. Tente novamente.";
     if (errorCode === "EAUTH") {
       userMessage = "Erro de autenticação. Verifique as credenciais do email.";
