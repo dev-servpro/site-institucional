@@ -81,7 +81,7 @@ const featuredBanners: FeaturedBanner[] = [
     id: "custom-3",
     bgImage: "/images/NOVO-BANNER-FECHADURAS.png",
     title: "Fechaduras",
-    description: "Confira nossa linha de fechaduras.",
+    description: "Venha conhecer nossa linha de fechaduras.",
     ctaHref:
       "https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20queria%20saber%20mais%20sobre%20Fechaduras.",
     ctaLabel: "Solicite seu orçamento",
