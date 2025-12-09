@@ -30,6 +30,11 @@ function createTransporter(port: 465 | 587) {
     },
   });
 }
+export const config = {
+  api: {
+    bodyParser: false, // obrigatório para uploads grandes via formData
+  },
+};
 
 export async function POST(request: NextRequest) {
   try {
