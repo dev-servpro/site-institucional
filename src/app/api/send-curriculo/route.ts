@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 // Função auxiliar para criar transporter com diferentes configurações
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
 function createTransporter(port: 465 | 587) {
   // Validação das variáveis de ambiente
   const smtpHost = process.env.SMTP_HOST || "smtp.titan.email";
@@ -39,6 +41,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "Nenhum arquivo recebido" },
         { status: 400 }
+      );
+    }
+
+    // Valida tamanho antes de processar buffer
+    if (file.size && file.size > MAX_FILE_SIZE) {
+      return NextResponse.json(
+        {
+          error: "Arquivo excede o limite de 10MB.",
+          details: `Tamanho enviado: ${(file.size / (1024 * 1024)).toFixed(
+            2
+          )}MB`,
+        },
+        { status: 413 }
       );
     }
 
