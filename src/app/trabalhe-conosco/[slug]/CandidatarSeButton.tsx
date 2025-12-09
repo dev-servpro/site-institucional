@@ -21,13 +21,30 @@ export default function CandidatarSeButton() {
 
 function UploadModal({ onClose }: { onClose: () => void }) {
   const [loading, setLoading] = useState(false);
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
   async function handleUpload(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
 
     try {
-      const formData = new FormData(e.currentTarget);
+      const form = e.currentTarget;
+      const fileInput = form.elements.namedItem("curriculo") as
+        | HTMLInputElement
+        | null;
+      const file = fileInput?.files?.[0];
+
+      if (!file) {
+        alert("Selecione um arquivo.");
+        return;
+      }
+
+      if (file.size > MAX_FILE_SIZE) {
+        alert("O arquivo não pode passar de 10MB.");
+        return;
+      }
+
+      setLoading(true);
+      const formData = new FormData(form);
       const response = await fetch("/api/send-curriculo", {
         method: "POST",
         body: formData,
