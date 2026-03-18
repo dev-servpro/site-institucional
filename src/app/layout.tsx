@@ -37,11 +37,11 @@ export default function RootLayout({
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-WB96BBMX');
-          `
+          `,
         }}
       />
       {/* End Google Tag Manager */}
-      
+
       {/* Smartzapp Chat */}
       <Script
         id="smartzapp-chat"
@@ -59,34 +59,55 @@ export default function RootLayout({
               s.webchat('cid', '67b7994463ca1900189c082b');
               s.webchat('host', h);
             })(window, document, 'script', 'https://servpro.sz.chat');
-          `
+          `,
         }}
       />
       {/* End Smartzapp Chat */}
-      
+
+      {/* Microsoft Clarity */}
+      <Script
+        id="clarity-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "vxor9cqqye");
+          `,
+        }}
+      />
+      {/* End Microsoft Clarity */}
+
       <body
         className={cn(
           `antialiased min-h-screen bg-[#EFEAE3] flex flex-col`,
-          poppins.className
+          poppins.className,
         )}
       >
         {/* Google Tag Manager (noscript) */}
         <noscript>
-          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB96BBMX"
-            height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WB96BBMX"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <HeaderWrapper />
         <main className="grow flex-1">{children}</main>
-        
+
         <div className="divbutton">
-        <a href="https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20de%20enrolar!"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        <button className="button1">Fale conosco</button>
-        </a>
-</div>
+          <a
+            href="https://wa.me/5585989193078?text=Ol%C3%A1%2C%20vim%20do%20Google%20e%20queria%20saber%20mais%20sobre%20Porta%20de%20enrolar!"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="button1">Fale conosco</button>
+          </a>
+        </div>
 
         <Footer />
         {/* WhatsApp Chat - Comentado para usar Smartzapp */}
