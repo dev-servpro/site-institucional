@@ -1,8 +1,8 @@
 import { api } from "@/lib/axios";
 import Header from "./header";
-import { Category } from "@/app/produtos/page";
-import { Subcategory } from "@/app/produtos/[category]/page";
-import { Product } from "@/app/produtos/[category]/[produto]/page";
+import type { Category } from "@/app/produtos/page";
+import type { Subcategory } from "@/app/produtos/[category]/page";
+import type { Product } from "@/app/produtos/[category]/[produto]/page";
 export const dynamic = 'force-dynamic';
 
 export default async function HeaderWrapper() {

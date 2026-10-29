@@ -16,7 +16,7 @@ const poppins = Montserrat({
 export const metadata: Metadata = {
   title: "Rede ServPro",
   description:
-    "A Rede ServPro é uma rede de lojas de móveis e eletrodomésticos que oferece produtos de qualidade e serviços excepcionais.",
+    "A Rede ServPro é uma fabrica de produtos e sistemas de segurança que oferece soluções de qualidade e serviços excepcionais.",
 };
 
 export default function RootLayout({
