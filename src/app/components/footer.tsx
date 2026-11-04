@@ -142,7 +142,7 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-6 text-white">
               Institucional
             </h3>
-            {/*
+            {/* TERMOS E POLITICAS DE PRIVACIDADE
             <nav className="space-y-4">
               <Link
                 href="/politica-de-privacidade"
