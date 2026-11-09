@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Rede ServPro",
   description:
     "A Rede ServPro é uma fabrica de produtos e sistemas de segurança que oferece soluções de qualidade e serviços excepcionais.",
+
+    verification: {
+    google: "83JXDurtpCJ6WGVzAwlBphfG5lXrZ-iOMNTslNiTzfk",
+  },
 };
 
 export default function RootLayout({
