@@ -126,7 +126,7 @@ export default function Header({
                   <DropdownMenuItem asChild>
                     <Link
                       target="_blank"
-                      href="https://lpesquadrias.redeservpro.com.br/"
+                      href="https://lpmkt.redeservpro.com.br/"
                       className="text-primary focus:text-primary font-medium"
                     >
                       Esquadrias
@@ -141,7 +141,7 @@ export default function Header({
                       Interfone Interativo
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  {/*<DropdownMenuItem>
                     <Link
                       target="_blank"
                       href="https://fonemaxx.com.br/"
@@ -149,7 +149,7 @@ export default function Header({
                     >
                       Telefonia em Nuvem
                     </Link>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem>*/}
                 </DropdownMenuContent>
               </DropdownMenu>
             </li>

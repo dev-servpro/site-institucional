@@ -52,11 +52,11 @@ export const atendimento = [
 ]
 
 export const regulatorio = [
-  { label: "Política de Privacidade", href: "/" },
+  { label: "Política de Privacidade", href: "/politica-de-privacidade" },
   { label: "Ética e Integridade", href: "/" },
   { label: "Contratos e Regulamentos", href: "/" },
   { label: "Segurança da Informação", href: "/" },
-  { label: "Termos de Uso", href: "/" },
+  { label: "Termos de Uso", href: "/termos-de-uso" },
   { label: "Patrocinadores", href: "/" }
 ]
 

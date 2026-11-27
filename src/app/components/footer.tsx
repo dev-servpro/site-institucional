@@ -42,18 +42,12 @@ export default function Footer() {
                 href="/novidades"
                 className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
               >
-                Mídia
-              </Link>
-              <Link
-                href="/produtos"
-                className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
-              >
                 Produtos
               </Link>
               <div className="space-y-2">
                 <span className="block text-gray-300 text-[15px] tracking-wide font-semibold mb-1">Soluções</span>
                 <a
-                  href="https://planos.redeservpro.com.br/"
+                  href="https://planos.redeservpro.com.br"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
@@ -61,7 +55,7 @@ export default function Footer() {
                   Planos
                 </a>
                 <a
-                  href="https://lpesquadrias.redeservpro.com.br/"
+                  href=""
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
@@ -69,7 +63,7 @@ export default function Footer() {
                   Esquadrias
                 </a>
                 <a
-                  href="https://intermaxx.com.br/"
+                  href="https://lpmkt.redeservpro.com.br"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
@@ -77,26 +71,13 @@ export default function Footer() {
                   Interfone Interativo
                 </a>
                 <a
-                  href="https://fonemaxx.com.br/"
+                  href="https://intermaxx.com.br"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide pl-4"
                 >
-                  Telefonia em Nuvem
                 </a>
               </div>
-              <Link
-                href="/onde-encontrar"
-                className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
-              >
-                Onde Encontrar
-              </Link>
-              <Link
-                href="/contato"
-                className="block text-gray-300 hover:text-white transition-colors duration-200 text-[15px] tracking-wide"
-              >
-                Contato
-              </Link>
             </nav>
           </div>
 
@@ -107,28 +88,28 @@ export default function Footer() {
             </h3>
             <nav className="space-y-4">
               <Link
-                href="https://facebook.com"
+                href="https://www.facebook.com/redeservpro"
                 className="flex items-center text-gray-300 hover:text-white transition-colors duration-200 group text-[15px] tracking-wide"
               >
                 <Facebook className="w-5 h-5 mr-3 opacity-70 group-hover:opacity-100" />
                 <span>Facebook</span>
               </Link>
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/servprobrasil"
                 className="flex items-center text-gray-300 hover:text-white transition-colors duration-200 group text-[15px] tracking-wide"
               >
                 <Instagram className="w-5 h-5 mr-3 opacity-70 group-hover:opacity-100" />
                 <span>Instagram</span>
               </Link>
               <Link
-                href="https://youtube.com"
+                href="https://www.youtube.com/RedeServProBrasil"
                 className="flex items-center text-gray-300 hover:text-white transition-colors duration-200 group text-[15px] tracking-wide"
               >
                 <Youtube className="w-5 h-5 mr-3 opacity-70 group-hover:opacity-100" />
                 <span>Youtube</span>
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://br.linkedin.com/company/redeservpro"
                 className="flex items-center text-gray-300 hover:text-white transition-colors duration-200 group text-[15px] tracking-wide"
               >
                 <Linkedin className="w-5 h-5 mr-3 opacity-70 group-hover:opacity-100" />
